@@ -1,4 +1,8 @@
-//The program calls a function named one_three(). This function should display the word one on one line, call a second function named two(), and then display the word three on one line. The function two() should display the word two on one line. The main() function should display the phrase starting now: befor calling one_three() and display done! after calling it.
+// The program calls a function named one_three(). This function should display
+// the word one on one line, call a second function named two(), and then
+// display the word three on one line. The function two() should display the
+// word two on one line. The main() function should display the phrase starting
+// now: befor calling one_three() and display done! after calling it.
 #include <stdio.h>
 
 void one_three(void);

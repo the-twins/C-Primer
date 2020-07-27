@@ -1,4 +1,5 @@
-// Have the program define a function that displays the string Smile! once, and have the program use the function as often as needed.
+// Have the program define a function that displays the string Smile! once, and
+// have the program use the function as often as needed.
 #include <stdio.h>
 
 void sm(void);

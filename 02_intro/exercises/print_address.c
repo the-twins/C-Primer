@@ -1,5 +1,6 @@
 // The program prints your name and adress.
 #include <stdio.h>
+
 int main(void)
 {
     int room, building;
