@@ -1,3 +1,9 @@
+// The program produces the following output:
+//
+// Smile!Smile!Smile!
+// Smile!Smile!
+// Smile!
+//
 // Have the program define a function that displays the string "Smile!" once,
 // and have the program use the function as often as needed.
 #include <stdio.h>

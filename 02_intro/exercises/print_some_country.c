@@ -1,4 +1,10 @@
-// have the program use two user-defined function in addition to main(): one
+// The program produces the following output:
+//
+// Brazil, Russia, India, China
+// India, China,
+// Brazil, Russia
+//
+// Have the program use two user-defined function in addition to main(): one
 // named br() that prints "Brazil, Russia" once, and named ic() that prints
 // "India, China" once. Let main() take care of any additional printing tasks.
 #include <stdio.h>
@@ -17,7 +23,7 @@ int main(void)
 
 void ic(void)
 {
-    printf("India, China\n");
+    printf("India, China,\n");
 }
 
 void br(void)
