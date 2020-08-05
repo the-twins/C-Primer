@@ -1,7 +1,7 @@
 // badcount.c -- incorrect counts
 #include <stdio.h>
 
-int main(voit)
+int main(void)
 {
     int n = 4;
     int m = 5;
