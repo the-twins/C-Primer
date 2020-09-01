@@ -4,7 +4,6 @@
 
 int main(void)
 {
-
     int number;
 
     printf("Please enter some number.\n");

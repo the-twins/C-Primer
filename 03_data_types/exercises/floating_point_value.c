@@ -1,6 +1,6 @@
 // This program reads in a floating-point number and prints it first in
-// desimal-point notation, than in exponential notation, and than, if your
-// system support it, p notation. Have the output use the following format
+// decimal-point notation, then in exponential notation, and then, if your
+// system supports it, p notation. Have the output use the following format
 // (the actual number of digits displayed for the exponent depends on the
 // system):
 // "Enter a floating-point value: 64.25

@@ -5,20 +5,13 @@
 
 int main (void)
 {
-    float pint;
     float cup;
-    float ounce;
-    float tspoon;
-    float teaspoon;
 
     printf("Enter volume in cups: ");
     scanf("%f", &cup);
-    pint = cup / 2;
-    ounce = cup * 8;
-    tspoon = cup * 16;
-    teaspoon = cup * 48;
-    printf("There are volumes %.2f in pints, %.2f in ounces, ", pint, ounce);
-    printf("%.2f in tablespoons, %.2f in teaspoons.\n", tspoon, teaspoon);
+    printf("%.2f cups is equal to %.2f pints, ",cup, cup / 2);
+    printf("%.2f ounces, %.2f tablespoons, ", cup * 8, cup * 16);
+    printf("%.2f teaspoons.\n", cup * 48);
 
     return 0;
 }   
