@@ -4,8 +4,8 @@
 
 int main(void)
 {
-    char first_name [40];
-    char last_name [40];
+    char first_name[40];
+    char last_name[40];
 
     printf("What is your first name?\n");
     scanf("%s", first_name);

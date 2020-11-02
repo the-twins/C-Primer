@@ -8,10 +8,12 @@
 
 int main(void)
 {
-    float a = 21.290;
-
-    printf("The a is %.1f or %.1e\n", a, a);
-    printf("The a is %+.3f or %.3E\n", a, a);
+    float number;
+    
+    printf("Enter some  number.\n");
+    scanf("%f", &number);
+    printf("The a is %.1f or %.1e\n", number, number);
+    printf("The a is %+.3f or %.3E\n", number, number);
 
     return 0;
 } 
