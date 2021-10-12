@@ -1,6 +1,9 @@
 // pound.c -- defines a function with an argument
+
 #include <stdio.h>
+
 void pound(int n);     // ANSI function prototype declaration
+
 int main(void)
 {
     int times = 5;

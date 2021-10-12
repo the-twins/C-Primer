@@ -1,5 +1,7 @@
 // post_pre.c -- postfix vs prefix
+
 #include <stdio.h>
+
 int main(void)
 {
     int a = 1, b = 1;

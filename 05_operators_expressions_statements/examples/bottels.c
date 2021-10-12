@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define MAX 100
+
 int main(void)
 {
     int count = MAX + 1;

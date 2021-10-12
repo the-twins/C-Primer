@@ -1,5 +1,7 @@
 // squares.c -- produces a table of first 20 squares
+
 #include <stdio.h>
+
 int main(void)
 {
     int num = 1;

@@ -1,8 +1,11 @@
 // running.c -- a useful program for runners
+
 #include <stdio.h>
+
 const int S_PER_M = 60;         // seconds in a minute
 const int S_PER_H = 3600;       // seconds in an hour
 const double M_PER_K = 0.62137; // miles in a kilometer
+
 int main(void)
 {
     double distk,distm;  // distance run in km and in miles
