@@ -1,5 +1,4 @@
 // add_one.c -- incrementing: prefix and postfix
-
 #include <stdio.h>
 
 int main(void)

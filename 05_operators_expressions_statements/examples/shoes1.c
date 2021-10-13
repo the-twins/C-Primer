@@ -1,6 +1,6 @@
 // shoes1.c -- converts a shoe size to inches
-
 #include <stdio.h>
+
 #define ADJUST 7.31                // one kind of symbolic constant
 
 int main(void)

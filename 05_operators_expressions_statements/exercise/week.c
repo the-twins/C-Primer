@@ -2,8 +2,8 @@
 // to weeks and days. The program has 'while' to allow the user to repeatedly
 // enter day values and the program stops when the user enters a nonpositive value,
 // such as 0 or -20.
-
 #include <stdio.h>
+
 #define WEEK 7
 
 int main(void)

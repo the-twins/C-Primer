@@ -1,7 +1,6 @@
 // This program asks the user to enter a height in centimeters and then displays
 // the height in centimeters and in feet andinches. The program stops when user
 // enters a nonpositive value.
-
 #include <stdio.h>
 
 #define CM_IN_INCH 2.54

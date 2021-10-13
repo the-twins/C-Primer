@@ -1,5 +1,4 @@
 // divide.c -- divisions we have know
-
 #include <stdio.h>
 
 int main(void)
@@ -11,4 +10,4 @@ int main(void)
     printf("mixed division:    7./4  is %1.2f \n", 7./4);
 
     return 0;
-} 
+}

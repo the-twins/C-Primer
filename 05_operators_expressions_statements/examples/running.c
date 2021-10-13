@@ -1,5 +1,4 @@
 // running.c -- a useful program for runners
-
 #include <stdio.h>
 
 const int S_PER_M = 60;         // seconds in a minute
@@ -44,4 +43,3 @@ int main(void)
 
     return 0;
 }
-

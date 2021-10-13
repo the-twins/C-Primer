@@ -1,5 +1,4 @@
 // golf.c -- golf tournament scorecard
-
 #include <stdio.h>
 
 int main(void)

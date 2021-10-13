@@ -1,5 +1,4 @@
 // post_pre.c -- postfix vs prefix
-
 #include <stdio.h>
 
 int main(void)
@@ -13,4 +12,4 @@ int main(void)
     printf("%ld %5d %5d %5d\n", a, a_post, b, pre_b);
 
     return 0;
-} 
+}

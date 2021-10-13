@@ -1,6 +1,6 @@
-// shoes2.c -- calculates foot lengths for several sizes
-
+// shoes2.c -- calculates foot lengths for several sizes.
 #include <stdio.h>
+
 #define ADJUST 7.31                // one kind of simbolic constant
 
 int main(void)
