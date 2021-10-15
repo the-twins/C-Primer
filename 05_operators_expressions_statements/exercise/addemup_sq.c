@@ -12,7 +12,7 @@ int main(void)
     printf("Enter the number of days: ");
     scanf("%d", &day);
     while (count++ < day)
-    sum = sum + count * count;
+        sum = sum + count * count;
     printf("sum = %d\n", sum);
 
     return 0;

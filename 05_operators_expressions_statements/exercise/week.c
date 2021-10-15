@@ -4,7 +4,7 @@
 // such as 0 or -20.
 #include <stdio.h>
 
-#define WEEK 7
+#define DAYS_IN_WEEK 7
 
 int main(void)
 {
@@ -16,7 +16,7 @@ int main(void)
     scanf("%d", &day);
     while ( day > 0)
     {
-        printf("%d days are %d weeks, %d days.\n", day, day / WEEK, day % WEEK);
+        printf("%d days are %d weeks, %d days.\n", day, day / DAYS_IN_WEEK, day % DAYS_IN_WEEK);
         printf("Enter the next number of days.\n");
         scanf("%d", &day);
     }
