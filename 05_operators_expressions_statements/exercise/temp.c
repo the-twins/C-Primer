@@ -30,8 +30,11 @@ int main(void)
     }
     return 0;
 }
-    void Temperatures(double fahr)
+
+void Temperatures(double fahr)
 {
     printf("%.2lf Fahrenheit is %.2lf Celsius or %.2lf Kelvin.\n",
-           fahr, 5.0 / 9.0 * (fahr - CELS), 5.0 / 9.0 * (fahr - CELS) + KELV);
+           fahr,
+           5.0 / 9.0 * (fahr - CELS),
+           5.0 / 9.0 * (fahr - CELS) + KELV);
 }
