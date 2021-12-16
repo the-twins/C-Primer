@@ -5,7 +5,7 @@ int main(void)
 {
     int n = 0;
 
-    while (n++ <3);             // line 8
+    while (n++ < 3);            // line 8
         printf("n is %d\n", n); // line 9
     printf("That's all this program does.\n");
 

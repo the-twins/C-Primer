@@ -13,7 +13,7 @@ int main(void)
     printf(" to quit.\n");
     while (scanf("%lf%d", &x, &exp) == 2)
     {
-        xpow = power(x,exp);    // function call
+        xpow = power(x, exp);   // function call
         printf("%.3g to the power %d is %.5g\n", x, exp, xpow);
         printf("Enter next pair of numbers or q to quit.\n");
     }
