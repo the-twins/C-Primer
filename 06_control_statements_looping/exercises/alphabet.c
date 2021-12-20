@@ -7,14 +7,13 @@
 int main(void)
 {
     char letter[ALPHABET];
-    char ch;
     int index;
 
     for (index = 0; index < ALPHABET; index++) 
-        letter [index] = 'a' + 1;
-    for (ch = 'a'; ch < ('a' + ALPHABET); ch++)
-        printf("%c ", ch);
-        printf("\n");
+        letter[index] = 'a' + index;
+    for (index = 0; index < ALPHABET; index++)
+        printf("%c ", letter[index]);
+    printf("\n");
 
     return 0;
 }
