@@ -17,7 +17,7 @@ int main(void)
     {
         for (col = 0; col <= row; col++)   
             printf("$");
-    printf("\n");
+        printf("\n");
     }
 
     return 0;
