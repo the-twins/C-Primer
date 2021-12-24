@@ -11,8 +11,8 @@ int main(void)
     scanf("%d %d", &min, &max);
     printf("    n   n squared   n cubed\n");
 
-    for (num = min; num <=max; num++)
-        printf("%5d %6d %11d\n", num, num*num, num*num*num);
+    for (num = min; num <= max; num++)
+        printf("%5d %6d %11d\n", num, num * num, num * num * num);
 
     return 0;
 }
