@@ -23,6 +23,5 @@ int main(void)
 
 float calculate(float first_num, float next_num)
 {
-    (first_num - next_num) / (first_num * next_num);
     return (first_num - next_num) / (first_num * next_num);
 }
