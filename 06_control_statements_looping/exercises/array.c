@@ -29,16 +29,14 @@ int main(void)
     }
    
     for (index = 0; index < SIZE; index++)
-    {
         printf("%.2lf ", first[index]);
-    }
-    printf("\n%.2lf ", first[0]);
+    printf("\n");
 
-    for (index = 1, second[0] = first[0]; index < SIZE; index++)
-    {    
+    for (index = 1, second[0] = first[0]; index < SIZE; index++)    
         second[index] = second[index-1] + first[index];
+
+    for (index = 0; index < SIZE; index++)
         printf("%.2lf ", second[index]);
-    }
     printf("\n");        
 
     return 0;
