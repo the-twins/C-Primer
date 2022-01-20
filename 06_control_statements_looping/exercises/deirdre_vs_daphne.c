@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 #define DEPOSIT 100.0
-#define DAPHNE_SIMPLE_INTEREST 10.0
+#define DAPHNE_PERCENT 0.1
 #define DEIRDRE_PERCENT 0.05
 
 int main(void)
@@ -18,7 +18,7 @@ int main(void)
 
     for (daphne = DEPOSIT, deirdre = DEPOSIT, years = 1; deirdre <= daphne; years++)
     {
-        daphne = daphne + DAPHNE_SIMPLE_INTEREST;
+        daphne = daphne + DEPOSIT * DAPHNE_PERCENT;
         deirdre = deirdre + deirdre * DEIRDRE_PERCENT;
     }
     printf("Deirdre's balance will be $%.2f and Daphne's balance will be $%.2f after %d years.\n", deirdre, daphne, years);
