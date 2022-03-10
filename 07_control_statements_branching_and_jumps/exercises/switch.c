@@ -11,17 +11,17 @@ int main(void)
     {
         switch (ch)
         {
-        case '.' :
-            putchar('!');
-            point_count++;
-            break;       
-        case '!' :
-            putchar('!');
-            putchar('!');
-            excl_mark_count++;
-            break;
+            case '.' :
+                putchar('!');
+                point_count++;
+                break;       
+            case '!' :
+                putchar('!');
+                putchar('!');
+                excl_mark_count++;
+                break;
             default :
-            putchar(ch);
+                putchar(ch);
         }
     }
     printf("\nThe point has been replaced %d times, exclamation mark has been "
