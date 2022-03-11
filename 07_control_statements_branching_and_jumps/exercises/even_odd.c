@@ -26,10 +26,16 @@ int main(void)
             odd_count++;
         }
     }
-    printf("The total number of even integers = %d, the average value of the "
-           "even integers = %.2f.\n", even_count, (float) numb_even / even_count);
-    printf("The total number of odd integers = %d , the average value of the "
-           "odd integers = %.2f.\n", odd_count, (float) numb_odd / odd_count); 
+    if (even_count > 0)
+        printf("The total number of even integers = %d, the average value of the "
+               "even integers = %.2f.\n", even_count, (float) numb_even / even_count);
+    else
+        printf("The total number of even integers = %d.\n", even_count);
+    if (odd_count > 0)
+        printf("The total number of odd integers = %d, the average value of the "
+               "odd integers = %.2f.\n", odd_count, (float) numb_odd / odd_count);
+    else
+        printf("The total number of odd integers = %d.\n", odd_count); 
 
     return 0;
 }
