@@ -14,30 +14,30 @@
 #define BREAK1 300
 #define BREAK2 450
 #define BASE1 (RATE1 * BREAK1)
-#define BASE2 (BASE1 +(RATE2 * (BREAK2 - BREAK1)))
+#define BASE2 (BASE1 + (RATE2 * (BREAK2 - BREAK1)))
 #define OVER 15
-#define FOR_40_HOURS 400
+#define HOURS_PER_WEEK 40
 
 int main(void)
 {
-    double gross_pay;
-    double net_pay;
-    double hours;
-    double taxes;
+    float gross_pay;
+    float net_pay;
+    float hours;
+    float taxes;
 
     printf("Enter the number of hours worked: \n");
-    scanf("%lf", &hours);
-    if (hours <= 40)
+    scanf("%f", &hours);
+    if (hours <= HOURS_PER_WEEK)
         gross_pay = hours * PAYMENT;
     else
-        gross_pay = (hours - 40) * OVER + FOR_40_HOURS;
+        gross_pay = ((hours - HOURS_PER_WEEK) * OVER) + (HOURS_PER_WEEK * PAYMENT);
     if (gross_pay <= BREAK1)
         taxes = RATE1 * gross_pay;
     else if (gross_pay <= BREAK2)
         taxes = BASE1 + (RATE2 * (gross_pay - BREAK1));
     else
         taxes = BASE2 + (RATE3 * (gross_pay - BREAK2));
-    printf("The gross pay = %.2lf, the taxes = %.2lf, and the net pay = %.2lf"
+    printf("The gross pay = %.2f, the taxes = %.2f, and the net pay = %.2f"
            ".\n", gross_pay, taxes, net_pay = gross_pay - taxes);
 
     return 0;
