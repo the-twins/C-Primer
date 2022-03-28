@@ -15,6 +15,10 @@
 
 #include <stdio.h>
 
+#define PAYMENT1 8.75
+#define PAYMENT2 9.33
+#define PAYMENT3 10.00
+#define PAYMENT4 11.20
 #define RATE1 0.15
 #define RATE2 0.20
 #define RATE3 0.25
@@ -43,16 +47,16 @@ int main(void)
         switch (ch)
         {
             case '1' : 
-                payment = 8.75;
+               payment = PAYMENT1;
                 break;
             case '2' : 
-                payment = 9.33; 
+               payment = PAYMENT2; 
                 break;
             case '3' : 
-                payment = 10.00;
+               payment = PAYMENT3;
                 break;
             case '4' : 
-                payment = 11.20;
+               payment = PAYMENT4;
                 break;
             default : 
                 printf("Enter the number corresponding to the desired pay rate or action:\n");
