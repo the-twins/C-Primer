@@ -12,12 +12,16 @@ int main(void)
     while ((ch = getchar()) != '#')
     {
         if (ch == 'e')
-        {    
+        {
             ch = getchar();  
             if (ch == 'i')
+            {
                 count++;
                 continue;
-        }          
+            }
+            else if (ch == '#')
+                break;
+        }
     }
     printf("The %d times the sequence 'ei' occurs.\n", count);
 
