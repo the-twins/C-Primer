@@ -13,14 +13,18 @@
 
 #define RATE1 0.15
 #define RATE2 0.28
+#define TAX_BREAK_1 17850.0
+#define TAX_BREAK_2 23900.0
+#define TAX_BREAK_3 29750.0
+#define TAX_BREAK_4 14875.0
 
 int main(void)
 {
-    float gross_pay;
+    float tax_break;
     float salary;
     float net_pay;
     float taxes;
-    char rate;
+    char category;
 
     printf("Enter the number of your category:\n");
     printf("1) Single (15%% of first $17,850 plus 28%% of excess)\n");
@@ -28,30 +32,28 @@ int main(void)
     printf("3) Married, Joint (15%% of first $29,750 plus 28%% of excess)\n");  
     printf("4) Married, Separate (15%% of first $14,875 plus 28%% of excess)\n");
     printf("5) quit\n");
-    while ((rate = getchar()) != '5')
+    while ((category = getchar()) != '5')
     {
-        switch (rate)
+        switch (category)
         {
-            case '1' : gross_pay = 17850;
+            case '1' : tax_break = TAX_BREAK_1;
                      break;
-            case '2' : gross_pay = 23900;
+            case '2' : tax_break = TAX_BREAK_2;
                      break;
-            case '3' : gross_pay = 29750;
+            case '3' : tax_break = TAX_BREAK_3;
                      break;
-            case '4' : gross_pay = 14875 ;
+            case '4' : tax_break = TAX_BREAK_4;
                      break;
             default : 
-            printf("Enter the number of your category:\n");
-            printf("1) Single (15%% of first $17,850 plus 28%% of excess)\n");
-            printf("2) Head of Household (15%% of first $23,900 plus 28%% of excess)\n");
-            printf("3) Married, Joint (15%% of first $29,750 plus 28%% of excess)\n");
-            printf("4) Married, Separate (15%% of first $14,875 plus 28%% of excess)\n");
-            printf("5) quit\n");
+            printf("Enter the number of your category or quit:\n");
             continue;
         }
         printf("Enter your salary: \n");
         scanf("%f", &salary);
-        taxes = (RATE1 * gross_pay) + (RATE2 * (salary - gross_pay));
+        if (salary > tax_break)
+            taxes = (RATE1 * tax_break) + (RATE2 * (salary - tax_break));
+        else
+            taxes = RATE1 * salary;
         printf("The gross pay = %.2f, the taxes = %.2f, and the net pay = %.2f"
                ".\n", salary, taxes, net_pay = salary - taxes);
     }
