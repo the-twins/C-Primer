@@ -6,22 +6,18 @@
 
 int main(void)
 {
-    char ch;
+    char ch = 0;
+    char first_ch = 0;
     int count = 0;
 
     while ((ch = getchar()) != '#')
     {
-        if (ch == 'e')
+        if (ch == 'i')
         {
-            ch = getchar();  
-            if (ch == 'i')
-            {
-                count++;
-                continue;
-            }
-            else if (ch == '#')
-                break;
+            if (first_ch == 'e')
+            count++;
         }
+        first_ch = ch;
     }
     printf("The %d times the sequence 'ei' occurs.\n", count);
 
