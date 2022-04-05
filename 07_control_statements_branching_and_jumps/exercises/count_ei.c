@@ -15,7 +15,7 @@ int main(void)
         if (ch == 'i')
         {
             if (first_ch == 'e')
-            count++;
+                count++;
         }
         first_ch = ch;
     }
