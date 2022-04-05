@@ -2,6 +2,7 @@
 // all the prime numbers smaller than or equal to that number.
 #include <stdio.h>
 #include <stdbool.h>
+
 int main(void)
 {
     unsigned long num;
