@@ -22,7 +22,6 @@ int main(void)
 {
     float tax_break;
     float salary;
-    float net_pay;
     float taxes;
     char category;
 
@@ -37,16 +36,15 @@ int main(void)
         switch (category)
         {
             case '1' : tax_break = TAX_BREAK_1;
-                     break;
+                       break;
             case '2' : tax_break = TAX_BREAK_2;
-                     break;
+                       break;
             case '3' : tax_break = TAX_BREAK_3;
-                     break;
+                       break;
             case '4' : tax_break = TAX_BREAK_4;
-                     break;
-            default : 
-            printf("Enter the number of your category or quit:\n");
-            continue;
+                       break;
+            default :  printf("Enter the number of your category or quit:\n");
+                       continue;
         }
         printf("Enter your salary: \n");
         scanf("%f", &salary);
@@ -55,7 +53,7 @@ int main(void)
         else
             taxes = RATE1 * salary;
         printf("The gross pay = %.2f, the taxes = %.2f, and the net pay = %.2f"
-               ".\n", salary, taxes, net_pay = salary - taxes);
+               ".\n", salary, taxes, salary - taxes);
     }
     
     return 0;
