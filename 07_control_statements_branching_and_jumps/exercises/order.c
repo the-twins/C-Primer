@@ -70,16 +70,20 @@ int main (void)
                        continue;
         }
     }
-        all_cost = cost_a + cost_b + cost_c;
-        all_pound = pound_a + pound_b + pound_c;
-        if (all_cost >= OVER)
-            discount = all_cost * DISCOUNT;
-        if (all_pound < BREAK1)
-            delivery = RATE1;
-        else if (all_pound <= BREAK2)
-            delivery = RATE2;
-        else if (all_pound > BREAK2)
-            delivery = RATE2 + (all_pound - BREAK2) * RATE3;
+    all_cost = cost_a + cost_b + cost_c;
+    all_pound = pound_a + pound_b + pound_c;
+    if (all_cost <= 0.1)
+        printf("Order is cancelled. Bye!\n");
+    if (all_cost >= OVER)
+        discount = all_cost * DISCOUNT;
+    if (all_pound < BREAK1)
+        delivery = RATE1;
+    else if (all_pound <= BREAK2)
+        delivery = RATE2;
+    else if (all_pound > BREAK2)
+        delivery = RATE2 + (all_pound - BREAK2) * RATE3;
+    if (all_cost >= 0.1)
+    {
         printf("Item        Amount      Price      Total\n");
         printf("---------------------------------------------\n");
         printf("Artichokes  %-10.2f  $%.2f      $%.2f\n", pound_a, ARTICHOKE, cost_a);
@@ -93,6 +97,7 @@ int main (void)
         printf("---------------------------------------------\n");
         printf("                         Shipment: $%.2f\n", delivery);
         printf("                      Grand total: $%.2f\n", all_cost + delivery - discount);
+    }
 
     return 0;
 }
