@@ -27,6 +27,7 @@
 #define RATE3 0.5
 #define BREAK1 5
 #define BREAK2 20
+#define MIN_PRICE 0.01
 
 int main (void)
 {
@@ -72,8 +73,11 @@ int main (void)
     }
     all_cost = cost_a + cost_b + cost_c;
     all_pound = pound_a + pound_b + pound_c;
-    if (all_cost <= 0.1)
+    if (all_cost <= MIN_PRICE)
+    {
         printf("Order is cancelled. Bye!\n");
+	return 0;
+    }
     if (all_cost >= OVER)
         discount = all_cost * DISCOUNT;
     if (all_pound < BREAK1)
@@ -82,22 +86,20 @@ int main (void)
         delivery = RATE2;
     else if (all_pound > BREAK2)
         delivery = RATE2 + (all_pound - BREAK2) * RATE3;
-    if (all_cost >= 0.1)
-    {
-        printf("Item        Amount      Price      Total\n");
-        printf("---------------------------------------------\n");
-        printf("Artichokes  %-10.2f  $%.2f      $%.2f\n", pound_a, ARTICHOKE, cost_a);
-        printf("Beets       %-10.2f  $%.2f      $%.2f\n", pound_b, BEET, cost_b);
-        printf("Carrots     %-10.2f  $%.2f      $%.2f\n", pound_c, CARROT, cost_c);
-        printf("---------------------------------------------\n");
-        printf("            %-15.2f        $%.2f\n", all_pound, all_cost);
-        printf("*********************************************\n");
-        printf("                         Discount: $%.2f\n", discount);
-        printf("              Total with discount: $%.2f\n", all_cost - discount);
-        printf("---------------------------------------------\n");
-        printf("                         Shipment: $%.2f\n", delivery);
-        printf("                      Grand total: $%.2f\n", all_cost + delivery - discount);
-    }
+    
+    printf("Item        Amount      Price      Total\n");
+    printf("---------------------------------------------\n");
+    printf("Artichokes  %-10.2f  $%.2f      $%.2f\n", pound_a, ARTICHOKE, cost_a);
+    printf("Beets       %-10.2f  $%.2f      $%.2f\n", pound_b, BEET, cost_b);
+    printf("Carrots     %-10.2f  $%.2f      $%.2f\n", pound_c, CARROT, cost_c);
+    printf("---------------------------------------------\n");
+    printf("            %-15.2f        $%.2f\n", all_pound, all_cost);
+    printf("*********************************************\n");
+    printf("                         Discount: $%.2f\n", discount);
+    printf("              Total with discount: $%.2f\n", all_cost - discount);
+    printf("---------------------------------------------\n");
+    printf("                         Shipment: $%.2f\n", delivery);
+    printf("                      Grand total: $%.2f\n", all_cost + delivery - discount);
 
     return 0;
 }
