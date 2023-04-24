@@ -18,16 +18,18 @@ int main(void)
     {
 	count++;
         if (ch =='\n')
-	    printf("\\n = %d.\n", ch);
+	    printf("\\n = %d", ch);
         else if (ch == '\t')
-            printf("\\t = %d.\n", ch);
+            printf("\\t = %d", ch);
 	else if (ch < 32)
 	    printf("^%c = %d\n", ch + 64, ch); 
 	else if (count == 11)
+	{
 	    printf("\n");
+	    count = 0;
+	}
 	else
             printf("%c = %d ", ch, ch);
-
     }
 
     return 0;
