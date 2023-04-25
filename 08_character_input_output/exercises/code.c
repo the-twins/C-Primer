@@ -13,23 +13,26 @@
 int main(void)
 {
     char ch;  
-    int count = 0; 
+    int count = 0;
     while ((ch = getchar()) != EOF)
     {
 	count++;
         if (ch =='\n')
-	    printf("\\n = %d", ch);
+	{
+	    printf("\\n = %d\n", ch);
+	    count = 0;
+	}
         else if (ch == '\t')
             printf("\\t = %d", ch);
 	else if (ch < 32)
-	    printf("^%c = %d\n", ch + 64, ch); 
-	else if (count == 11)
+	    printf("^%c = %d\n", ch + 64, ch);
+	else
+	    printf("%c = %d ", ch, ch);
+	if (count == 10)
 	{
 	    printf("\n");
 	    count = 0;
 	}
-	else
-            printf("%c = %d ", ch, ch);
     }
 
     return 0;
