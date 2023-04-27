@@ -23,9 +23,9 @@ int main(void)
 	    count = 0;
 	}
         else if (ch == '\t')
-            printf("\\t = %d", ch);
+            printf("\\t = %d ", ch);
 	else if (ch < 32)
-	    printf("^%c = %d\n", ch + 64, ch);
+	    printf("^%c = %d ", ch + 64, ch);
 	else
 	    printf("%c = %d ", ch, ch);
 	if (count == 10)
