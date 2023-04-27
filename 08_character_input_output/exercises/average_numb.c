@@ -30,7 +30,7 @@ int main(void)
     if (n_words == 0)
         printf("The program is stopped.\n");
     else
-        printf("\nThis text contains %d words of %d letters. Averege number of letters "
+        printf("\nThis text contains %d words of %d letters. Average number of letters "
 	       "= %d.\n", n_words, n_chars, n_chars / n_words);
 
     return 0;
