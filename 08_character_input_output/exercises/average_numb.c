@@ -10,8 +10,7 @@
 int main(void)
 {
     char ch;
-    char prev;
-    long n_chars = 0L;
+    int n_chars = 0;
     int n_words = 0;
     bool inword = false;
  
@@ -27,12 +26,11 @@ int main(void)
         }
         if (isspace(ch) && inword)
             inword = false;
-        prev = ch;
     }
     if (n_words == 0)
         printf("The program is stopped.\n");
     else
-        printf("\nThis text contains %d words of %ld letters. Averege number of letters "
+        printf("\nThis text contains %d words of %d letters. Averege number of letters "
 	       "= %d.\n", n_words, n_chars, n_chars / n_words);
 
     return 0;
