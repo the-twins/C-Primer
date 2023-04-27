@@ -23,7 +23,7 @@ int main(void)
         else
             character++;
     }
-    printf("\nThe number of uppercase letters = %d, the number of lowrcase lretters = %d, and "
+    printf("\nThe number of uppercase letters = %d, the number of lowercase letters = %d, and "
            "the number of other characters = %d.\n", up_letter, low_letter, character);
 
     return 0;
