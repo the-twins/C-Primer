@@ -29,9 +29,6 @@ int main(void)
 	    max = mid;
             printf("Well, then, is it %d?\n", mid -= (max - min) / 2);
 	}
-        else if (response == 'y')
-
-	    return 0;
 	else
 	    printf("Sorry, I understand only l, h or y. \n");
         while (getchar() != '\n')
