@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 char get_choice(void);
+char get_first(void);
 
 float get_float(void);
 
@@ -18,10 +19,6 @@ void divide(void);
 int main(void)
 {
     int choice;
-    void add(void);
-    void subtract(void);
-    void multiply(void);
-    void divide(void);
     while ((choice = get_choice()) != 'q')
     {
         switch (choice)
@@ -50,6 +47,8 @@ void add(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f + %.2f = %.2f\n", first, second, first + second);
+    while (getchar() != '\n')
+        continue;
 }
 
 void subtract(void)
@@ -60,6 +59,8 @@ void subtract(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f - %.2f = %.2f\n", first, second, first - second);
+    while (getchar() != '\n')
+        continue;
 }
 
 void multiply(void)
@@ -70,6 +71,8 @@ void multiply(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f * %.2f = %.2f\n", first, second, first * second);
+    while (getchar() != '\n')
+        continue;
 }
 
 void divide(void)
@@ -79,7 +82,14 @@ void divide(void)
     first = get_float();
     printf("Enter second number: \n");
     second = get_float();
+    if (second == 0)
+    {
+        printf("Cannot be divided by 0. Enter another number: \n");
+	second = get_float();
+    }
     printf("%.2f / %.2f = %.2f\n", first, second, first / second);
+    while (getchar() != '\n')
+	continue;
 }
 
 char get_choice(void)
@@ -89,12 +99,21 @@ char get_choice(void)
     printf("a. add        s. subtract\n");
     printf("m. multiply   d. divide\n");
     printf("q. quit\n");
-    ch = getchar();
+    ch = get_first();
     while (ch != 'a' && ch != 's' && ch != 'm' && ch != 'd' && ch != 'q')
     {
         printf("Please respond with a,s,m,d or q.\n");
-	ch = getchar();
+	ch = get_first();
     }
+    return ch;
+}
+
+char get_first(void)
+{
+    int ch;
+    ch = getchar();
+    while (getchar() != '\n')
+        continue;
     return ch;
 }
 
@@ -104,9 +123,9 @@ float get_float(void)
     char ch;
     while (scanf("%f", &input) != 1)
     {
-        while ((ch = getchar()) != 1)
+        while ((ch = getchar()) != '\n')
 	    putchar(ch);
-	printf("Please enter a number, such as 2.5, -1.78E8, or 3: ");
+        printf(" is not correct, please enter a number, such as 2.5, -1.78E8, or 3: ");
     }
     return input;
 }
