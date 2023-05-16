@@ -47,9 +47,7 @@ void add(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f + %.2f = %.2f\n", first, second, first + second);
-    while (getchar() != '\n')
-        continue;
-}
+}   
 
 void subtract(void)
 {
@@ -59,8 +57,6 @@ void subtract(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f - %.2f = %.2f\n", first, second, first - second);
-    while (getchar() != '\n')
-        continue;
 }
 
 void multiply(void)
@@ -71,8 +67,6 @@ void multiply(void)
     printf("Enter second number: \n");
     second = get_float();
     printf("%.2f * %.2f = %.2f\n", first, second, first * second);
-    while (getchar() != '\n')
-        continue;
 }
 
 void divide(void)
@@ -82,14 +76,12 @@ void divide(void)
     first = get_float();
     printf("Enter second number: \n");
     second = get_float();
-    if (second == 0)
+    while (second == 0)
     {
         printf("Cannot be divided by 0. Enter another number: \n");
 	second = get_float();
     }
     printf("%.2f / %.2f = %.2f\n", first, second, first / second);
-    while (getchar() != '\n')
-	continue;
 }
 
 char get_choice(void)
@@ -127,5 +119,8 @@ float get_float(void)
 	    putchar(ch);
         printf(" is not correct, please enter a number, such as 2.5, -1.78E8, or 3: ");
     }
+    while (getchar() != '\n')
+        continue;
+
     return input;
 }
