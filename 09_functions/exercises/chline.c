@@ -14,9 +14,7 @@ int main(void)
         chline(ch, i, j);
         printf("Try again. Enter one character and two numbers.\n");
 	getchar();
-
     }
-    printf("%c, %d, %d\n", ch, i, j);
     printf("Bye!\n");
 
     return 0;
@@ -28,7 +26,7 @@ void chline(char ch, int i, int j)
 
     for(n = 1; n < i; n++)
         putchar(' ');
-            for(n = i; n <= j; n++)
-                putchar(ch);
+    for(n = i; n <= j; n++)
+        putchar(ch);
     putchar('\n');
 }
