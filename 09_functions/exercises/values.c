@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 void values(double * first, double * second, double * third);
+void change(double * a, double * b);
 
 int main(void)
 {
@@ -23,26 +24,18 @@ int main(void)
 
 void values(double * first, double * second, double * third)
 {
+    if(*first > *second)
+        change(first, second);
+    if(*second > *third)
+	change(second, third);
+    if(*first > *second)
+	change(first, second);
+}
+
+void change(double * a, double * b)
+{
     double temp;
-    if (* first >= * second && * first >= * third)
-    {
-        temp = * first;
-       * second = (* second > * third ? * second : * third);
-       * first = (* second < * third ? * second : * third);
-       * third = temp;
-    }
-    if (* second >= * first && * second >= * third)
-    {
-        temp = * second;  
-        * second = (* first > * third ? * first : * third);
-        * first = (* first < * third ? * first : * third);
-        * third = temp;
-    }
-    if (* third >= * first && * third >= * second)
-    {
-        temp = * third;
-        * second = (* first > * second ? * first : * second);
-        * first = (* first < * second ? * first : * second);
-        * third = temp;
-    }
+    temp = *a;
+    *a = *b;
+    *b = temp;
 }
