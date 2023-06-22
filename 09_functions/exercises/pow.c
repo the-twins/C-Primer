@@ -38,8 +38,7 @@ double power(double n, int p)
     if (p < 0)
     {
         for (i = -1; i >= p; i--)
-	    pow *= n;
-            pow = 1 / pow;
+	    pow /= n;
     }
     return pow;
 }
