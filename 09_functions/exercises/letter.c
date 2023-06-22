@@ -12,7 +12,14 @@ int main(void)
     char ch;
     printf("Enter text (EOF to quit).\n");
     while ((ch = getchar()) != EOF)
-        printf("\n%c - %d is numerical location in the alphabet.\n", ch, letter(ch));
+    {
+	if(ch == '\n')
+	    continue;
+        if(letter(ch) == -1)
+	    printf("%c - is not a letter.\n", ch);
+	else
+            printf("%c - %d\n", ch, letter(ch));
+    }
     printf("Bye!\n");
 
     return 0;
