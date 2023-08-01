@@ -20,5 +20,5 @@ int ind(double ar[], int n)
     for (i = 1, imax = 0; i < n; i++)
         imax = (ar[imax] > ar[i] ? imax : i);
 
-        return imax;
+    return imax;
 }
