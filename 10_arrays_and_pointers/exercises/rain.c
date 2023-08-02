@@ -16,8 +16,6 @@ int main(void)
          {7.6, 5.6, 3.8, 2.8, 3.8, 0.2, 0.0, 0.0, 0.0, 1.3, 2.6, 5.2}
 
     };
-    const float (*pti)[MONTHS];
-    pti = rain;
     int year, month;
     float subtot, total;
 
@@ -25,7 +23,7 @@ int main(void)
     for (year = 0, total = 0; year < YEARS; year++)
     {
         for (month = 0, subtot = 0; month < MONTHS; month++)
-            subtot +=  pti[year][month];
+            subtot +=  *(*(rain + year) + month);
         printf("%5d %15.1f\n", 2010 + year, subtot);
         total += subtot;
     }
@@ -38,7 +36,7 @@ int main(void)
     for (month = 0; month < MONTHS; month++)
     {
         for (year = 0, subtot = 0; year < YEARS; year++)
-            subtot += pti[year][month];
+            subtot += *(*(rain + year) + month);
         printf("%4.1f ", subtot / YEARS);
     }
     printf("\n");
