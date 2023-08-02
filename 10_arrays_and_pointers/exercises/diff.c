@@ -16,10 +16,11 @@ double diff(double ar[], int n)
 {
     int i;
     double max, min;
-    for (i = 1, max = ar[0]; i < n; i++)
+    for (i = 1, max = ar[0], min = ar[0]; i < n; i++)
+    {
         max = (max > ar[i] ? max : ar[i]);
-    for (i = 1, min = ar[0]; i < n; i++)
         min = (min < ar[i] ? min : ar[i]);
+    }
 
     return max - min;
 }
