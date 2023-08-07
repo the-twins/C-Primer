@@ -7,28 +7,29 @@
 #define ROWS 2
 #define COLS 3
 
-void copy_arr(double target1[][COLS], double source[][COLS], int n);
+void copy_arr(double target1[], double source[], int n);
 void print(int r, int c, double target1[r][c]);
 
 int main(void)
 {
     double source[ROWS][COLS] = {{1.1, 2.2, 3.3}, {4.4, 5.5, 6.6}};
     double target1[ROWS][COLS];
+    int i;
 
     printf("The target1 array after calling copy_arr():\n");
-    copy_arr(target1, source, 2);
+    for (i = 0; i < ROWS; i++)
+        copy_arr(target1[i], source[i], COLS);
     print(ROWS, COLS, target1);
 
     return 0;
 }
 
-void copy_arr(double target1[][COLS], double source[][COLS], int n)
+void copy_arr(double target1[], double source[], int n)
 {
-    int i,j;
+    int i;
 
     for(i = 0; i < n; i++)
-	for(j = 0; j < COLS; j++)
-            target1[i][j] = source[i][j];
+            target1[i] = source[i];
 }
 
 void print(int r, int c, double target1[r][c])
