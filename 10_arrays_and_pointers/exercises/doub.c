@@ -28,7 +28,7 @@ void doub(int arr[][COLS], int n)
 {
     int i, j;
 
-    for(i = 0; i < ROWS; i++)
+    for(i = 0; i < n; i++)
         for(j = 0; j < COLS; j++)
             arr[i][j] *= NUMB;
 }
@@ -37,7 +37,7 @@ void print(int arr[][COLS], int n)
 {
     int i, j;
 
-    for(i = 0; i < ROWS; i++)
+    for(i = 0; i < n; i++)
     {
         for(j = 0; j < COLS; j++)
             printf("%d ", arr[i][j]);
