@@ -8,7 +8,7 @@
 #define ROWS 3
 #define COLS 5
 
-void copy_arr(double target[][COLS], double arr[][COLS], int n);
+void copy_arr(int r, int c, double target[r][c], double arr[r][c]);
 void print(int r, int c, double array[r][c]);
 
 int main(void)
@@ -21,18 +21,18 @@ int main(void)
     printf("The arr array contains values:\n");
     print(ROWS, COLS, arr);
     printf("The target array after calling copy_arr():\n");
-    copy_arr(target, arr, ROWS);
+    copy_arr(ROWS, COLS, target, arr);
     print(ROWS, COLS, target);
 
     return 0;
 }
 
-void copy_arr(double target[][COLS], double arr[][COLS], int n)
+void copy_arr(int r, int c, double target[r][c], double arr[r][c])
 {
     int i, j;
 
-    for(i = 0; i < n; i++)
-        for(j = 0; j < COLS; j++)
+    for(i = 0; i < r; i++)
+        for(j = 0; j < c; j++)
             target[i][j] = arr[i][j];
 }
 
