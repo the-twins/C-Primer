@@ -5,18 +5,20 @@
 // in a simple program.
 #include <stdio.h>
 
+#define INDEX 4
+
 void sum(int arr1[], int arr2[], int target[], int n);
 void print(int target[], int n);
 
 int main(void)
 {
-    int arr1[4] = {2, 4, 5, 8};
-    int arr2[4] = {1, 0, 4, 6};
-    int target[4];
+    int arr1[INDEX] = {2, 4, 5, 8};
+    int arr2[INDEX] = {1, 0, 4, 6};
+    int target[INDEX];
 
     printf("The target array after calling sum():\n");
-    sum(arr1, arr2, target, 4);
-    print(target, 4);
+    sum(arr1, arr2, target, INDEX);
+    print(target, INDEX);
 
     return 0;
 }
