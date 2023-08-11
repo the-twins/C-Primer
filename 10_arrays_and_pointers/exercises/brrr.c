@@ -10,14 +10,14 @@
 // approach to handling attays. Accomplish task 'b' by using a function that computes
 // and returns the average of a one-dimensional array; use a loop to call this function three
 // times. The other tasks should take the entire array as an argument, and the functions
-// performing tasks 'c' and 'd' should return the answert to the calling program.
+// performing tasks 'c' and 'd' should return the answer to the calling program.
 #include <stdio.h>
 
 #define ROWS 3
 #define COLS 5
 
 void arr(double target[][COLS], int n);
-void average(double target[], int n);
+double average(double target[], int n);
 double average_all(double target[][COLS], int n);
 double largest(double target[][COLS], int n);
 void print(double target[][COLS], int n);
@@ -25,9 +25,15 @@ void print(double target[][COLS], int n);
 int main(void)
 {
     double target[ROWS][COLS];
+    int i;
 
     printf("Please enter three sets of five double number each:\n");
     arr(target, ROWS);
+    print(target, ROWS);
+    for(i = 0; i < ROWS; i++)
+        printf("The average of %d set is %.2lf.\n", i + 1, average(target[i], COLS));
+    printf("The average of all values is %.2lf.\n", average_all(target, ROWS));
+    printf("The largest value of the 15 values is %.2lf.\n", largest(target, ROWS));
 
     return 0;
 }
@@ -39,23 +45,16 @@ void arr(double target[][COLS], int n)
     for(i = 0; i < n; i++)
         for(j = 0; j < COLS; j++)
             scanf("%lf", &target[i][j]);
-
-    print(target, ROWS);
-    
-    for(i = 0; i < ROWS; i++)
-        average(target[i], COLS);
-    printf("The average of all values is %.2lf\n", average_all(target, ROWS));
-    printf("The largest value of the 15 values is %.2lf\n", largest(target, ROWS));
 }
 
-void average(double target[], int n)
+double average(double target[], int n)
 {
     int i;
     double total = 0;
 
     for(i = 0; i < n; i++)
         total += target[i];
-    printf("The average of each set of five values is %.2lf.\n", total / n);
+    return total / n;
 }
 
 double average_all(double target[][COLS], int n)
