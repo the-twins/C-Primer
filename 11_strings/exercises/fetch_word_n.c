@@ -13,7 +13,6 @@ int main(void)
     char string[SIZE + 1];
     printf("Enter text(EOF for quit):\n");
     fetch_word(string, SIZE);
-    printf("\n");
     puts(string);
     puts("Bye!");
 
@@ -26,11 +25,16 @@ char * fetch_word(char * str, int n)
     int i = 0;
     while(isspace(ch = getchar()))
         ;
-        str[i] = ch;
-        i++;
-    while((ch = getchar()) != EOF)
+    if(ch != EOF)
     {
-        if(!isspace(ch) && i != n)
+	str[i] = ch;
+        i++;
+    }
+    else
+	str[i] = '\0';
+    while((ch = getchar()) != EOF && i != n)
+    {
+        if(!isspace(ch))
 	{
             str[i] = ch;
             i++;
