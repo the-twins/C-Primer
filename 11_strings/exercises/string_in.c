@@ -26,7 +26,7 @@ int main(void)
         if(find == NULL)
             printf("No matches.\n");
 	else
-	    printf("Adress %p in string.\n", find);
+	    printf("Address %p in string. Position %ld.\n", find, find - string1);
    	printf("Enter the first string to analyze (EOF to quit):\n");
     }
 
