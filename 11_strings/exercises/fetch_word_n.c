@@ -46,5 +46,7 @@ char * fetch_word(char * str, int n)
         }
     }
     str[n] = '\0';
+    if(ch == EOF)
+        str[i] = '\0';
     return str;
 }
