@@ -17,12 +17,12 @@ int main(void)
     char string[TARGETSIZE];
     char temp [SIZE];
     puts("Enter the words to copy (EOF to quit):");
-    while(s_gets(temp, SIZE) != NULL)
+    while(s_gets(temp, SIZE))
     {
         mystrncpy(string, temp, TARGETSIZE);
-	string[TARGETSIZE] = '\0';
         printf("Your word is: %s.\n", string);
 	printf("Try again (EOF to quit):\n");
+	string[TARGETSIZE] = '\0';
     }
 
     return 0;
@@ -30,14 +30,23 @@ int main(void)
 
 char * mystrncpy(char * s1, char * s2, int n)
 {
-    int i;
-    int s;
-    for(s = 0, i = 0; s <= n, i <= n; s++, i++)
+    int i = 0;
+    int j = strlen(s2);
+    do
     {
-        s1[i] = s2[s];
-	if (s1[i] == '\n')
-	    return NULL;
+        s1[i] = s2[i];
+	i++;
+	if(i > n)
+            break;
+            	    
     }
-    return s1;
+    while(i <= j);
+    do
+    {
+        s1[i] = '\0';
+        i++;
+    }
+    while(i < n);
 
+    return s1;
 }
