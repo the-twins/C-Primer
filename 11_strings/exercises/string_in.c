@@ -46,9 +46,10 @@ char * string_in(char * s1, char * s2)
 	    else
 		break;
 	}
-	if(s2[j] == '\0')
+	if(s2[j]  == '\0')
 	    return s1 + i;
         i++;
+	j = 0;
     }
     return NULL;
 }
