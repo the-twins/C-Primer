@@ -11,6 +11,7 @@
 #define TARGETSIZE 5
 
 char * mystrncpy(char * s1, char * s2, int n);
+void print_arr(char * ar, int n);
 
 int main(void)
 {
@@ -20,9 +21,8 @@ int main(void)
     while(s_gets(temp, SIZE))
     {
         mystrncpy(string, temp, TARGETSIZE);
-        printf("Your word is: %s.\n", string);
+        print_arr(string, TARGETSIZE);
 	printf("Try again (EOF to quit):\n");
-	string[TARGETSIZE] = '\0';
     }
 
     return 0;
@@ -35,12 +35,9 @@ char * mystrncpy(char * s1, char * s2, int n)
     do
     {
         s1[i] = s2[i];
-	i++;
-	if(i > n)
-            break;
-            	    
+	i++;	    
     }
-    while(i <= j);
+    while(i < j && i < n);
     do
     {
         s1[i] = '\0';
@@ -49,4 +46,15 @@ char * mystrncpy(char * s1, char * s2, int n)
     while(i < n);
 
     return s1;
+}
+
+void print_arr(char * ar, int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        if (ar[i])
+            putchar(ar[i]);
+        else
+            putchar('0');
+    putchar('\n');
 }
