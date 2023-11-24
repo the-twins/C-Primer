@@ -2,6 +2,7 @@
 // string. Test it in a program that uses a loop to read lines until you enter an empty line.
 // The program should apply the function to each input string and display the result.
 #include <stdio.h>
+#include <ctype.h>
 #include "../lib.c"
 
 #define SIZE 100
@@ -12,7 +13,7 @@ int main(void)
 {
     char string[SIZE];
     printf("Enter text to remove spaces or empty line to quit:\n");
-    while(s_gets(string, SIZE) && string[0] != '\n')
+    while(s_gets(string, SIZE) && string[0] != '\0')
     {
         rm_spaces(string);
 	printf("%s\n", string);
@@ -28,7 +29,7 @@ void rm_spaces(char * ar)
     int j = 0;
     while(ar[i] != '\0')
     {
-        if(ar[i] != ' ')
+        if(!isspace(ar[i]))
         {
             ar[j] = ar[i];
 	    j++;
