@@ -9,12 +9,12 @@ int main(int argc, char *argv[])
     int i, n;
     double numb;
     double power = 1;
-    numb = atof(argv[1]);
-    i = atoi(argv[2]);
     if(argc != 3)
         printf("Usage: %s <number> <power>\n", argv[0]);
     else
     {
+	numb = atof(argv[1]);
+	i = atoi(argv[2]);
         for(n = 1; n <= i; n++)
             power *= numb;
         printf("%.2f to the %d th power is equal to %.2f\n", numb, i, power);
