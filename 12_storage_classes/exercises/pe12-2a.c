@@ -15,10 +15,8 @@ void set_mode(int first_mode)
     extern int mode;
     if(first_mode > 1)
         printf("Invalid mode specified. Mode %d used.\n", mode);
-      
     else
         mode = first_mode;
-
 }
 
 void get_info(void)
@@ -40,8 +38,6 @@ void get_info(void)
         printf("Enter fuel consumed in gallons: ");
         scanf("%f", &fuel_com);
     }
-    if (mode == -1)
-        exit(EXIT_FAILURE);
 }
 
 void show_info(void)
@@ -53,14 +49,4 @@ void show_info(void)
         printf("Fuel consumption is %.2f liters per %d km.\n", KM * fuel_com / distance, KM);
     if(mode == 1)
         printf("Fuel consumption is %.2f miles per gallon.\n", distance / fuel_com);
-    if(mode == -1)
-        exit(EXIT_FAILURE);
 }
-    
-    
-        
-    
-      
-    
-    
-        
