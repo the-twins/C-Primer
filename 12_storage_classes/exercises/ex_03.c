@@ -12,18 +12,13 @@ void show_info(int mode, float distance, float fuel_com);
 
 int main(void)
 {
-    int mode;
+    int mode = 0;
     float distance, fuel_com;
-    printf("Enter 0 for metric mode, 1 for US mode: ");
-    scanf("%d", &mode);
     set_mode(&mode);
     while(mode >= 0)
     {
 	get_info(mode, &distance, &fuel_com);
 	show_info(mode, distance, fuel_com);
-        printf("Enter 0 for metric mode, 1 for US mode");
-        printf(" (-1 to quit): ");
-        scanf("%d", &mode);
 	set_mode(&mode);
      }
      printf("Done.\n");
@@ -32,14 +27,13 @@ int main(void)
 
 void set_mode(int * mode)
 {
-    int n_mode;
-    if(*mode >= 2)
-    {
-        printf("Invalid mode specified. Mode %d used.\n", n_mode);
-        *mode = n_mode;
-    }
+    printf("Enter 0 for metric mode, 1 for US mode. (-1 to quit): ");
+    int new_mode;
+    scanf("%d", &new_mode);
+    if (new_mode > 1)
+        printf("Invalid mode specified. Mode %d used.\n", *mode);
     else
-        n_mode = *mode;
+	*mode = new_mode;
 }
 
 void get_info(int mode, float * distance, float * fuel_com)
