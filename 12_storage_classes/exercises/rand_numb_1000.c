@@ -10,45 +10,38 @@
 
 #define SIZE 1000
 #define RANGE 10
+#define SEEDS 10
+
+void print_ar(int ar[], int n);
 
 int main(void)
 {
-    unsigned int start;
-    int numb, a, b, c, d, e, f, g, h, i, j, t;
-    printf("Enter 1000 to generate 1000 random numbers and 0 to quit: ");
-    scanf("%d", &start);
-    while(start == SIZE)
+    int start;
+    int t, numb;
+    int ar[RANGE] = {0,0,0,0,0,0,0,0,0,0};
+    printf("Generate %d random numbers ranging 1 - %d %d times: \n", SIZE, RANGE, SEEDS);
+    printf(" 1   2   3   4   5   6   7   8   9   10\n");
+    printf("----------------------------------------\n");
+    srand((unsigned int) time(0));
+    for(start = 0; start < SEEDS; start++)
     {
-        srand((unsigned int) time(0));
         for(t = 0; t < SIZE; t++)
         {
 	    numb = rand() % RANGE + 1;
-            if(numb == 1)
-                a++;
-            if(numb == 2)
-                b++;
-            if(numb == 3)
-                c++;
-	    if(numb == 4)
-                d++;
-	    if(numb == 5)
-                e++;
-            if(numb == 6)
-                f++;
-            if(numb == 7)
-                g++;
-            if(numb == 8)
-                h++;
-            if(numb == 9)
-                i++;
-            if(numb == 10)
-                j++;
-        }
-        printf("'1' = %d\n'2' = %d\n'3' = %d\n'4' = %d\n'5' = %d\n", a, b, c, d, e);
-	printf("'6' = %d\n'7' = %d\n'8' = %d\n'9' = %d\n'10' = %d\n", f, g, h, i, j);
-        printf("Enter 1000 to generate 1000 random numbers and 0 to quit: ");
-	scanf("%d", &start);
+	    ar[numb - 1]++;
+	}
+        print_ar(ar, RANGE);
+	printf("\n");
+	for(t = 0; t < RANGE; t++)
+            ar[t] = 0;
     }
 
     return 0;
+}
+
+void print_ar(int ar[], int n)
+{
+    int i;
+    for(i = 0; i < n; i++)
+        printf("%3d ", ar[i]);
 }
