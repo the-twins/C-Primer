@@ -42,9 +42,8 @@ int main(void)
 void rollem(int set, int dice, int sides)
 {
     int numb[set];
-    int t, d, one;
-    for(t = 0; t < set; t++)
-        numb[t] = 0;
+    int t, d;
+    int one = 0;
     srand((unsigned int) time(0));
     for (t = 0; t < set; t ++)
     {
