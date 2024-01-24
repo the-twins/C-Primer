@@ -22,26 +22,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX 30
-
 int main(void)
 {
     int n, i, j;
     char ** pcl;
-    char * word;
+    char temp[200];
     printf("How many words do you wish to enter? ");
     scanf("%d", &n);
     printf("Enter %d words now: \n", n);
     pcl = (char **) malloc(n * sizeof(char *));
     for(i = 0; i < n; i++)
     {
-	word = (char *) malloc(MAX * sizeof(char));
-        scanf("%s", word);
-        pcl[i] = word;
+        scanf("%s", temp);
+	pcl[i] = (char *) malloc(strlen(temp));
+        strcpy(pcl[i], temp); 
     }
     printf("Here are your words:\n");
-    for (j = 0; j < n; j++)
+    for(j = 0; j < n; j++)
         printf("%s\n", *(pcl + j));
+    for(j = 0; j < n; j++)
+        free(pcl[j]);
     free(pcl);
 
     return 0;
