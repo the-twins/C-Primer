@@ -34,7 +34,7 @@ int main(void)
     for(i = 0; i < n; i++)
     {
         scanf("%s", temp);
-	pcl[i] = (char *) malloc(strlen(temp));
+	pcl[i] = (char *) malloc(strlen(temp) + 1);
         strcpy(pcl[i], temp); 
     }
     printf("Here are your words:\n");
