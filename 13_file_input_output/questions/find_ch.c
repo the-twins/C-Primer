@@ -12,7 +12,7 @@ int main(int argc, char * argv[])
     char * ch;
     FILE * fp;
     char str[SIZE];
-    if(argc < 2)
+    if(argc != 3)
         exit(EXIT_FAILURE);
     if((fp = fopen(argv[2], "r")) == NULL)
         exit(EXIT_FAILURE);
@@ -21,8 +21,6 @@ int main(int argc, char * argv[])
         ch = strchr(str, argv[1][0]);
 	if(ch)
             puts(str);
-        else
-            continue;
     }
 
     return 0;
