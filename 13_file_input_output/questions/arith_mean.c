@@ -15,16 +15,18 @@ int main(int argc, char * argv[])
     if(argc == 1)
     {
         fp = stdin;
-        printf("Enter floatinf-point numbers to calculate the arithmetic mean:\n");
+        printf("Enter floating-point numbers to calculate the arithmetic mean:\n");
         printf("To complete, enter # at the beginning of the line.\n");
     }
+    if(argc > 2)
+        exit(EXIT_FAILURE);    
     else if(argc == 2)
         if((fp = fopen(argv[1], "r")) == NULL)
     {
         printf("Could not open %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-    while(fscanf(fp,"%lf", &numb) == 1 && (numb != '#'))
+    while(fscanf(fp,"%lf", &numb) == 1)
     {
         sum += numb;
         count++;
