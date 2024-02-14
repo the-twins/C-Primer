@@ -13,7 +13,11 @@ int main(int argc, char * argv[])
         exit(EXIT_FAILURE);
     for(i = 1; i < argc; i++)
     {
-        fp = fopen(argv[i], "r");
+        if((fp = fopen(argv[i], "r")) == NULL)
+        {
+            fprintf(stderr, "Can't open file \"%s\"\n", argv[i]);
+            continue;
+        }
         while((ch = getc(fp)) != EOF)
             putchar(ch);
         fclose(fp);
