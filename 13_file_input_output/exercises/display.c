@@ -16,8 +16,8 @@ int main(int argc, char * argv[])
         fp = fopen(argv[i], "r");
         while((ch = getc(fp)) != EOF)
             putchar(ch);
+        fclose(fp);
     }
-    fclose(fp);
 
     return 0;
 }
