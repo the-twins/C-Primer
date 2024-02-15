@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>     // for exit()
 #include <string.h>
+#include "../../11_strings/lib.c"
 
 #define LEN 20
 
@@ -16,7 +17,7 @@ int main(void)
     int count = 0;
 
     printf("Enter the name of a text file:\n");
-    scanf("%s", text);
+    s_gets(text, LEN);
     if((in = fopen(text, "r")) == NULL)
     {
         fprintf(stderr, "I couldn't open the file \"%s\"\n",
