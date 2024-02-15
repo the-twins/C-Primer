@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
     }
     for(i = 2; i < argc; i++)
     {
-        fs = fopen(argv[i], "r");
         if(strcmp(argv[i], argv[1]) == 0)
             fputs("Can't append file to itself\n", stderr);
         else if((fs = fopen(argv[i], "r")) == NULL)
@@ -36,6 +35,7 @@ int main(int argc, char *argv[])
             if(setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
             {
                 fputs("Can't create input buffer\n", stderr);
+		fclose(fs);
                 continue;
             }
             append(fs, fa);
