@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>     // for exit()
 #include <string.h>
-#include "../../11_strings/lib.c"
+#include "lib.h"
 
 #define LEN 20
 
