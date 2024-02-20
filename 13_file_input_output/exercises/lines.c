@@ -7,7 +7,7 @@
 // same line.
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../11_strings/lib.c"
+#include "lib.h"
 
 #define SIZE 30
 #define MAX 100
