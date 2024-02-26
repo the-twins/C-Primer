@@ -19,6 +19,13 @@ int main(int argc, char *argv[])
     char name2[SIZE];
     char buf[MAX];
     FILE *fp, *fp2;
+    if(argc != 1 && argc != 3)
+    {
+        fprintf(stderr,
+                "Error. Enter the names of two files on the command line, or in the program.\n");
+        exit(EXIT_FAILURE);
+    }
+
     if(argc == 1)
     {
         printf("Enter the name of the first text file:\n");
