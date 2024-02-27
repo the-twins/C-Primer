@@ -7,6 +7,7 @@
 // fact and go on to the next file.
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../../11_strings/lib.h"
 
 #define SIZE 500
@@ -26,22 +27,21 @@ int main(int argc, char * argv[])
                 fprintf(stderr, "Can't open file \"%s\"\n", argv[i]);
                 continue;
             }
-	    ch = getc(fp);
-            while(ch != EOF)
+            while((ch = getc(fp)) != EOF)
             {
                 if(ch == argv[1][0])
                     count++;
-		ch = getc(fp);
             }
             printf("File %s contains %d characters \"%c\"\n", argv[i], count, argv[1][0]);
             fclose(fp);
+	    count = 0;
         }
     }
     if(argc == 2)
     {
         printf("Enter the text to analyze (EOF to quit):\n");
 	s_gets(str, SIZE);
-        for(i= 0; i < SIZE; i++)
+        for(i= 0; i < strlen(str); i++)
         {
             if(str[i] == argv[1][0])
                 count++;
@@ -50,5 +50,4 @@ int main(int argc, char * argv[])
     }
 
     return 0;
-}
-        
+} 
