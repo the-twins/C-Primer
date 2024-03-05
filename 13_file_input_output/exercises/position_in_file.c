@@ -11,7 +11,6 @@ int main(void)
 {
     char file[SIZE];
     int numb;
-    long last, count;
     int ch;
     FILE *fp;
     printf("Enter file name:\n");
@@ -24,24 +23,11 @@ int main(void)
     printf("Enter a file position ('#' or negative number to quit):\n");
     while((scanf("%d", &numb) == 1) && (numb >= 0))
     {
-        fseek(fp, 0L, SEEK_END);
-        last = ftell(fp);
-	if (numb > last)
-        {
-            printf("This text contains only %ld characters. Bye.\n", last);
-            break;
-        }
-        for(count = numb; count < last; count++)
-        {
-	    fseek(fp, count, SEEK_SET);
-	    ch = getc(fp);
+        fseek(fp, numb, SEEK_SET);
+        while((ch = getc(fp)) != EOF && ch != '\n')
             putchar(ch);
-	    if(ch == '\n')
-                break;
-        }
-        printf("Enter a file position (# to quit):\n");
+        printf("\nEnter a file position (# to quit):");
     }	
-    putchar('\n');
     fclose(fp);
 
     return 0;
