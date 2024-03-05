@@ -5,39 +5,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-void stat(char words[]);
-
 #define MAX 41
+
 
 int main(void)
 {
     FILE *fp;
     char words[MAX];
+    int numb = 0;
 
-    if((fp = fopen("wordy", "a+")) == NULL)
+    if((fp = fopen("ohwordy", "a+")) == NULL)
     {
         fprintf(stdout, "Can't open \"wordy\" file.\n");
         exit(EXIT_FAILURE);
     }
-
+    rewind(fp);
+    while(fscanf(fp, "%d %s", &numb, words) == 2);
+    
     puts("Enter words to add to the file; press the #");
     puts("key at the beginning of a line to terminate.");
-    while((fscanf(stdin, "%40s", words) == 1) && (words[0] != '#'))
-        fprintf(fp, "%s\n", words);
-
-    puts("File contents: ");
-    rewind(fp);         // go back to beginning of file
-    while(fscanf(fp, "%s", words) == 1)
-        stat(words);
+    while((fscanf(stdin, "%40s", words) == 1 && words[0] != '#'))
+        fprintf(fp, "%d %s\n", ++numb, words);
+    puts("File contents:");
+    rewind(fp);
+    while(fscanf(fp, "%d %s", &numb, words) == 2)
+        fprintf(stdout,"%d %s\n", numb, words);
     puts("Done!");
     if(fclose(fp) != 0)
         fprintf(stderr, "Error closing file\n");
 
     return 0;
-}
-
-void stat(char words[])
-{
-    static int i = 1;
-    printf("%d %s\n", i++, words);
 }
