@@ -14,14 +14,14 @@ int main(int argc, char * argv[])
 {
     char buf[MAX];
     FILE *fp;
-    if(argc < 2)
+    if(argc < 3)
     {
         fprintf(stderr, "Enter a string and the name of file.\n");
         exit(EXIT_FAILURE);
     }
     if((fp = fopen(argv[2], "r")) == NULL)
     {
-        fprintf(stderr, "I culdn't open files.\n");
+        fprintf(stderr, "I couldn't open file.\n");
         exit(EXIT_FAILURE);
     }
     while(fgets(buf, MAX, fp) != NULL)
