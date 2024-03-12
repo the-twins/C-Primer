@@ -16,7 +16,7 @@ int main(void)
 
     if((fp = fopen("ohwordy", "a+")) == NULL)
     {
-        fprintf(stdout, "Can't open \"wordy\" file.\n");
+        fprintf(stdout, "Can't open \"ohwordy\" file.\n");
         exit(EXIT_FAILURE);
     }
     rewind(fp);
