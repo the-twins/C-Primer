@@ -3,6 +3,7 @@
 // simple program.
 #include <stdio.h>
 #include <string.h>
+#include "../../11_strings/lib.h"
 
 #define ALL_YEAR 365
 
@@ -35,7 +36,7 @@ int main(void)
     int numb;
     printf("Enter a month (January, February, March, April, May, June, July, August,"
            " September, October, November, December.)\n");
-    while (scanf("%s", enter_month) != EOF)
+    while (s_gets(enter_month, 10) != NULL)
     {
         numb = count_days(year, enter_month);
         if(numb == 1)
