@@ -18,8 +18,7 @@ struct mnth {
 };
 
 int find_month(const struct mnth[], char * m);
-int total_days_leap(const struct mnth[], int m, int d);
-int total_days_non_leap(const struct mnth[], int m, int d);
+int total_days(const struct mnth[], int m, int d);
 
 int main(void)
 {
@@ -42,45 +41,56 @@ int main(void)
     int enter_day = 0;
     int ent_year = 0;
     int n = 0;
+    int tot = 0;
+    _Bool year_leap;
     printf("Please enter a year:\n");
     scanf("%d", &ent_year);
     printf("Please enter a month:\n");
     scanf("%s", enter_month);
     printf("Please enter a date:\n");
     scanf("%d", &enter_day);
+    year_leap = ((ent_year % 4 == 0 && ent_year % 100 != 0) || ent_year % 400 == 0);
     if(ent_year < 1)
     {
         printf("You entered the year incorrectly.\n");
         return 1;
     }
     if(n = atoi(enter_month))
-    {
-        if(n > 0 && n <= M)
-            f_month = n;
-        else
-        {
-            printf("You enterd the month incorrectly.\n");
-            return 1;
-        }
-    }
+        f_month = n;
     else
     {
         for(int i = 0; i < 10; i++)
-            enter_month[i] = toupper(enter_month[i]);   
+            enter_month[i] = toupper(enter_month[i]);
         f_month = find_month(year, enter_month);
+    }
+    if(f_month < 1 || f_month > M)
+    {
+        printf("You entered the month incorrectly.\n");
+        return 1;
     }
     if(year[f_month - 1].days < enter_day || enter_day < 1)
     {
-        printf("You entered the date incorrectly.\n");
-        return 1;
+	if (!(year_leap && f_month == 2 && enter_day == 29))
+        {
+            printf("You entered the date incorrectly.\n");
+            return 1;
+	}
     }
-    if((ent_year % 4 == 0 && ent_year % 100 != 0) || ent_year % 400 == 0)
-        printf("The total days in the year up to and including %s "
-               "month is %d.\n", enter_month, total_days_leap(year, f_month, enter_day));
+    if(year_leap)
+    {
+	if(f_month > 2)
+	{
+            tot = total_days(year, f_month, enter_day) + 1;
+            printf("The total days in the year up to and including %s "
+                   "month is %d.\n", enter_month, tot);
+	}
+        else
+            printf("The total days in the year up to and including %s "
+                   "month is %d.\n", enter_month, total_days(year, f_month, enter_day));
+    }
     else
         printf("The total days in the year up to and including %s month"
-               " is %d.\n", enter_month, total_days_non_leap(year, f_month, enter_day));
-
+               " is %d.\n", enter_month, total_days(year, f_month, enter_day));
     return 0;
 }
 
@@ -92,28 +102,11 @@ int find_month(const struct mnth year[], char * m)
         if((strcmp(m, year[i].name) == 0) || (strcmp(m, year[i].short_name) == 0))
             return i + 1;
     }
+    if(i == M)
+        return 13;
 }
 
-int total_days_leap(const struct mnth year[], int m, int d)
-{
-    int total = 0;
-    int i;
-    if(m > 2)
-    {
-        for(i = 0; i < m - 1; i++)
-            total += year[i].days;
-        return total + d + DAY_IN_LEAP;
-        
-    }
-    else
-    {
-        for(i = 0; i < m - 1; i++)
-            total += year[i].days;
-        return total + d;
-    }	
-}
-
-int total_days_non_leap(const struct mnth year[], int m, int d)
+int total_days(const struct mnth year[], int m, int d)
 {
     int total = 0;
     int i;
