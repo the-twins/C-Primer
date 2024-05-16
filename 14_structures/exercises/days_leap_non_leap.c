@@ -76,21 +76,12 @@ int main(void)
             return 1;
 	}
     }
-    if(year_leap)
-    {
-	if(f_month > 2)
-	{
-            tot = total_days(year, f_month, enter_day) + 1;
-            printf("The total days in the year up to and including %s "
-                   "month is %d.\n", enter_month, tot);
-	}
-        else
-            printf("The total days in the year up to and including %s "
-                   "month is %d.\n", enter_month, total_days(year, f_month, enter_day));
-    }
-    else
-        printf("The total days in the year up to and including %s month"
-               " is %d.\n", enter_month, total_days(year, f_month, enter_day));
+    tot = total_days(year, f_month, enter_day);
+    if(year_leap && f_month > 2)
+        tot++;
+    printf("The total days in the year up to and including %s "
+           "month is %d.\n", enter_month, tot);
+
     return 0;
 }
 
