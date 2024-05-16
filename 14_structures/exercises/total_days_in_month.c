@@ -56,11 +56,11 @@ int main(void)
 int count_days(const struct month year[], char * m)
 {
     int total = 0;
-    int i = 0;
-    for(; strcmp(m, year[i].name) != 0; i++)
+    int i;
+    for(i = 0; i < M, strcmp(m, year[i].name) != 0; i++)
     {
         total += year[i].days;
-        if (total > ALL_YEAR || i == M)
+        if (total > ALL_YEAR)
             return 1;
     }
     return total + year[i].days;
