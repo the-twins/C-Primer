@@ -5,7 +5,6 @@
 #include <string.h>
 #include "../../11_strings/lib.h"
 
-#define ALL_YEAR 365
 #define M 12
 
 struct month {
@@ -57,11 +56,11 @@ int count_days(const struct month year[], char * m)
 {
     int total = 0;
     int i;
-    for(i = 0; i < M, strcmp(m, year[i].name) != 0; i++)
+    for(i = 0; i < M; i++)
     {
         total += year[i].days;
-        if (total > ALL_YEAR)
-            return 1;
+        if (!strcmp(m, year[i].name))
+            return total;
     }
-    return total + year[i].days;
+    return 1;
 }
