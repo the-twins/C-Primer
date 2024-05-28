@@ -1,6 +1,6 @@
 // Write a program that creates a structure template with two members according to the
 // following criteria:
-// a. The first member is social security number. The second member is a structure whith
+// a. The first member is social security number. The second member is a structure with
 // three members. Its first member contains a first name, its second member contains a
 // middle name, and its final member contains a last name. Create and initialize an array
 // of five such structures. Have the program print the data in this format:
@@ -22,45 +22,48 @@ struct names {
 
 struct people {
     unsigned long int numb;
-    struct names three;
+    struct names name;
 };
 
-void print_struct(struct people *);
+void print_struct(struct people [], int n);
 void print_struct_b(struct people pr); 
 
 int main(void)
 {
     int i;
-    struct people date[ALL] = {
+    struct people data[ALL] = {
         {302039824,{"Lilia", "Ivanovna", "Karp"}},
         {302039825,{"Ivan", "Olegovich", "Shpak"}},
         {305689756,{"Iva", "Leonidovna", "Zhukova"}},
         {457899058,{"Alexey", "", "Fedorov"}},
         {355667643,{"Kirill", "Fedorovich", "Grinev"}}
     };
-    for(i = 0; i < ALL; i++)
-        print_struct(&date[i]);
+    print_struct(data, ALL);
     printf("\n");
     for(i = 0; i < ALL; i++)
-        print_struct_b(date[i]);
+        print_struct_b(data[i]);
 
     return 0;
 }
 
-void print_struct(struct people * pr)
+void print_struct(struct people pr[], int n)
 {
-    if(pr->three.middle[0] != '\0')
-        printf("%s, %s %c. -- %lu\n",pr->three.last, pr->three.first, pr->three.middle[0], pr->numb);
-    else
-        printf("%s, %s -- %lu\n", pr->three.last, pr->three.first, pr->numb);
+    int i;
+    for(i = 0; i < n; i++)
+    {
+        if(pr[i].name.middle[0] != '\0')
+            printf("%s, %s %c. -- %lu\n",pr[i].name.last, pr[i].name.first,
+                   pr[i].name.middle[0], pr[i].numb);
+        else
+            printf("%s, %s -- %lu\n", pr[i].name.last, pr[i].name.first, pr[i].numb);
+    }
 }
 
 void print_struct_b(struct people pr)
 {
- 
-    if(pr.three.middle[0] != '\0')
+    if(pr.name.middle[0] != '\0')
         printf("%s, %s %c. -- %lu"
-               "\n", pr.three.last, pr.three.first, pr.three.middle[0], pr.numb);
+               "\n", pr.name.last, pr.name.first, pr.name.middle[0], pr.numb);
     else
-        printf("%s, %s -- %lu\n", pr.three.last, pr.three.last, pr.numb);
+        printf("%s, %s -- %lu\n", pr.name.last, pr.name.first, pr.numb);
 }
