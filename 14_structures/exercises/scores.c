@@ -38,14 +38,15 @@ void print_struct(struct student []);
 int main(void)
 {
     struct student scores[CSIZE] = {
-        {{"IVAN","IVANOV"}, {0,0,0}, 0},
-        {{"MARY", "STAR"}, {0,0,0}, 0},
-        {{"SARA", "RUSOVA"}, {0,0,0}, 0},
-        {{"TARAS", "VODA"}, {0,0,0}, 0}
+        {{"IVAN","IVANOV"}, {0.0,0.0,0.0}, 0.0},
+        {{"MARY", "STAR"}, {0.0,0.0,0.0}, 0.0},
+        {{"SARA", "RUSOVA"}, {0.0,0.0,0.0}, 0.0},
+        {{"TARAS", "VODA"}, {0.0,0.0,0.0}, 0.0}
     };
     char f_name[MAX];
     char l_name[MAX];
     int i, j;
+    
     printf("Enter student first name (EOF to quit):\n");
     while(scanf("%s", f_name) != EOF)
     {
@@ -56,8 +57,13 @@ int main(void)
             f_name[j] = toupper(f_name[j]);
             l_name[j] = toupper(l_name[j]);
         }
-        ent_scores(scores, f_name, l_name);
-        aver_scr(&scores[i]);
+        i = ent_scores(scores, f_name, l_name);
+	aver_scr(&scores[i]);
+	if(i < 0|| i > CSIZE)
+        {
+            printf("You entered name incorrectly. Try again\n");
+            continue;
+        }
         printf("Enter student first name(EOF to quit):\n");
     }
     print_struct(scores);
@@ -75,11 +81,6 @@ int ent_scores(struct student scores[], char * f, char * l)
             scanf("%f %f %f", &scores[i].grade[0], &scores[i].grade[1], &scores[i].grade[2]);
             return i;
         }
-        else
-        {
-            printf("You entered name student's incorrectly.\n");
-            return 1;
-        }
     }
 }
 
@@ -93,8 +94,20 @@ void aver_scr(struct student * scores)
 void print_struct(struct student scores[])
 {
     int i;
+    float sum_all0 = 0;
+    float sum_all1 = 0;
+    float sum_all2 = 0;
+    float all_av = 0;
     for( i = 0; i < CSIZE; i++)
+    {
         printf("%s %s -- %.2f, %.2f, %.2f. Average rating = %.2f\n", scores[i].names.first,
                scores[i].names.last, scores[i].grade[0], scores[i].grade[1], scores[i].grade[2],
                scores[i].average_scr);
+        sum_all0 += scores[i].grade[0];
+        sum_all1 += scores[i].grade[1];
+        sum_all2 += scores[i].grade[2];
+        all_av += scores[i].average_scr;
+    }
+    printf("The class average = %.2f, %.2f, %.2f. And all average scor is %.2f.\n", sum_all0/ CSIZE,
+            sum_all1 / CSIZE, sum_all2 / CSIZE, all_av / CSIZE);
 }
