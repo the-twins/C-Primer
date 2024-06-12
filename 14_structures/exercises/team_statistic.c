@@ -19,8 +19,8 @@
 //
 // The simplest way for the program to proceed is to initialize the structure contents to
 // zeros, read the file data into temporary variables, and then add them to the contents of
-// the corresponding structure. After the program has finished reading the file, it shoud
-// then calculate the battingaverage for each player and store it in the corresponding
+// the corresponding structure. After the program has finished reading the file, it should
+// then calculate the batting average for each player and store it in the corresponding
 // structure member. The batting average is calculated by dividing the cumulative number
 // of hits for a player by the cumulative number of at-bats; it should be a floating-point
 // calculation. The program should then display the cumulative data for each player along
@@ -74,6 +74,10 @@ int main(void)
     int wlk = 0;
     int ht = 0;
     int rb = 0;
+    int total_bt = 0;
+    int total_ht = 0;
+    int total_wlk = 0;
+    int total_rbi = 0;
     if((data = fopen(TEXT, "r")) == NULL)
     {
         fprintf(stderr, "Can't open %s file.\n", TEXT);
@@ -89,9 +93,18 @@ int main(void)
         people[i].rbi += rb;
     }
     for(i = 0; i < PLAYERS; i++)
-        printf("%s %s. At bats - %d Hits - %d Walks - %d RBIs - %d Batting average - %.2f\n",
-               people[i].first, people[i].last, people[i].bat, people[i].hit, people[i].walk,
+    {
+        printf("%d. %s %s. At bats - %d Hits - %d Walks - %d RBIs - %d Batting average - %.2f\n",
+               i, people[i].first, people[i].last, people[i].bat, people[i].hit, people[i].walk,
                people[i].rbi, (float)people[i].hit / (float)people[i].bat);
+        total_bt += people[i].bat;
+        total_ht += people[i].hit;
+        total_wlk += people[i].walk;
+        total_rbi += people[i].rbi;
+    }
+    printf("Total bats = %d, total hits = %d, total walks = %d, total RBIs = %d, total batting "
+           "averages = %.2f.\n", total_bt, total_ht, total_wlk, total_rbi, 
+            (float) total_ht / (float) total_bt);
 
     return 0;
 }
