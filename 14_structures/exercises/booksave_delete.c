@@ -28,59 +28,67 @@ int main (void)
     struct book library[MAXBKS];
     int count = 0;
     int option = 0;
-    int index;
     FILE * pbooks;
     int size = sizeof(struct book);
 
-    pbooks = fopen("book.dat", "r+b");
-    rewind(pbooks);
-    while(count < MAXBKS && fread(&library[count], size, 1, pbooks) == 1)
+    pbooks = fopen("book.dat", "r");
+    if(pbooks)
     {
-        if(count == 0)
-            puts("Current contents of book.dat:");
-        printf("%s by %s: $%.2f\n", library[count].title,
-               library[count].author, library[count].value);
-        printf("Choose an option:\n1) Change string\n2) Delete string\n3) Continue\n");
-        scanf("%d", &option);
-        if(option == 1)
+        rewind(pbooks);
+        while(count < MAXBKS && fread(&library[count], size, 1, pbooks) == 1)
         {
-            puts("Enter the book titles");
-	    while(getchar() != '\n');
-            s_gets(library[count].title, MAXTITL);
-            puts("Enter the author");
-            s_gets(library[count].author, MAXAUTL);
-            puts("Enter the value");
-            scanf("%f", &library[count].value);
-            count++;
+            if(count == 0)
+                puts("Current contents of book.dat:");
+            printf("%s by %s: $%.2f\n", library[count].title,
+                   library[count].author, library[count].value);
+            printf("Choose an option:\n1) Change string\n2) Delete string\n3) Continue\n");
+            scanf("%d", &option);
+            if(option == 1)
+            {
+                puts("Enter the book titles");
+	        while(getchar() != '\n');
+                s_gets(library[count].title, MAXTITL);
+                puts("Enter the author");
+                s_gets(library[count].author, MAXAUTL);
+                puts("Enter the value");
+                scanf("%f", &library[count].value);
+                count++;
+            }
+            if(option == 2)
+                continue;
+            if(option == 3)
+                count++;
         }
-        if(option == 2)
-            break;
-        if(option == 3)
-            count++;
+        fclose(pbooks);
     }
-    fclose(pbooks);
 
-    if(count == MAXBKS)
+    if(count < MAXBKS)
     {
-        fputs("The book.dat file is full.", stderr);
-        exit(2);
+        puts("Please add new book titles.");
+        puts("Press [enter] at the start of a line to stop.");
+        while(getchar() !='\n');
+        while(count < MAXBKS && s_gets(library[count].title, MAXTITL)
+              && library[count].title[0] != '\0')
+        {
+            puts("Now enter the author.");
+            s_gets(library[count].author, MAXAUTL);
+            puts("Nou enter the value.");
+            scanf("%f", &library[count].value);
+            while(getchar() != '\n')
+                continue;
+            count++;
+            if(count == MAXBKS)
+            {
+                puts("The book.dat file is full.");
+                break;
+            }
+            puts("Now enter the titles or press[enter] to quit.");
+        }
     }
-    puts("Please add new book titles.");
-    puts("Press [enter] at the start of a line to stop.");
-    while(count < MAXBKS && s_gets(library[count].title, MAXTITL) != NULL
-          && library[count].title[0] != '\0')
-    {
-        puts("Now enter the author.");
-        s_gets(library[count].author, MAXAUTL);
-        puts("Nou enter the value.");
-        scanf("%f", &library[count].value);
-        while(getchar() != '\n')
-            continue;
-        count++;
-        if(count < MAXBKS)
-            puts("Enter the next title.");
-    }
-    if((pbooks = fopen("book.dat", "w+b")) == NULL)
+    else
+        puts("The book.dat file is full.");
+
+    if((pbooks = fopen("book.dat", "w+")) == NULL)
     {
         fprintf(stderr,"Can't open file 'book.dat' fo write.\n");
         EXIT_FAILURE;
