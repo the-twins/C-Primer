@@ -81,7 +81,7 @@ int main(void)
     if((data = fopen(TEXT, "r")) == NULL)
     {
         fprintf(stderr, "Can't open %s file.\n", TEXT);
-        EXIT_FAILURE;
+        exit(EXIT_FAILURE);
     }
     while(fscanf(data, "%d %s %s %d %d %d %d", &i, name_f, name_l, &bt, &ht, &wlk, &rb) == 7)
     {
