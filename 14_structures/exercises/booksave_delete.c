@@ -42,22 +42,33 @@ int main (void)
             printf("%s by %s: $%.2f\n", library[count].title,
                    library[count].author, library[count].value);
             printf("Choose an option:\n1) Change string\n2) Delete string\n3) Continue\n");
-            scanf("%d", &option);
-            if(option == 1)
+            while(scanf("%d", &option) == 1)
             {
-                puts("Enter the book titles");
-	        while(getchar() != '\n');
-                s_gets(library[count].title, MAXTITL);
-                puts("Enter the author");
-                s_gets(library[count].author, MAXAUTL);
-                puts("Enter the value");
-                scanf("%f", &library[count].value);
-                count++;
+                if(option == 1)
+                {
+                    puts("Enter the book titles");
+	            while(getchar() != '\n');
+                    s_gets(library[count].title, MAXTITL);
+                    puts("Enter the author");
+                    s_gets(library[count].author, MAXAUTL);
+                    puts("Enter the value");
+                    scanf("%f", &library[count].value);
+                    count++;
+                    break;
+                }
+                if(option == 2)
+                    break;
+                if(option == 3)
+                {
+                    count++;
+                    break;
+                }
+                if(option < 0 || option > 3)
+                {
+                    printf("You entered the wrong option. Try again:");
+                    continue;
+                }
             }
-            if(option == 2)
-                continue;
-            if(option == 3)
-                count++;
         }
         fclose(pbooks);
     }
@@ -72,7 +83,7 @@ int main (void)
         {
             puts("Now enter the author.");
             s_gets(library[count].author, MAXAUTL);
-            puts("Nou enter the value.");
+            puts("Now enter the value.");
             scanf("%f", &library[count].value);
             while(getchar() != '\n')
                 continue;
@@ -91,7 +102,7 @@ int main (void)
     if((pbooks = fopen("book.dat", "w+")) == NULL)
     {
         fprintf(stderr,"Can't open file 'book.dat' fo write.\n");
-        EXIT_FAILURE;
+        exit(EXIT_FAILURE);
     }
     if(count > 0)
     {
