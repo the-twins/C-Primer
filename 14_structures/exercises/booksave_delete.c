@@ -42,9 +42,15 @@ int main (void)
             printf("%s by %s: $%.2f\n", library[count].title,
                    library[count].author, library[count].value);
             printf("Choose an option:\n1) Change string\n2) Delete string\n3) Continue\n");
-            while(scanf("%d", &option) == 1)
+            while(1)
             {
-                if(option == 1)
+                if(!scanf("%d", &option))
+		{
+		    while(getchar() != '\n');
+                    printf("Please enter only 1, 2 or 3. Try again:\n");
+		    continue;
+		}
+		if(option == 1)
                 {
                     puts("Enter the book titles");
 	            while(getchar() != '\n');
@@ -56,28 +62,28 @@ int main (void)
                     count++;
                     break;
                 }
-                if(option == 2)
+		else if(option == 2)
                     break;
-                if(option == 3)
+		else if(option == 3)
                 {
                     count++;
                     break;
                 }
-                if(option < 0 || option > 3)
+		else
                 {
                     printf("You entered the wrong option. Try again:");
                     continue;
-                }
+                }                
             }
         }
         fclose(pbooks);
+        while(getchar()!='\n');
     }
 
     if(count < MAXBKS)
     {
         puts("Please add new book titles.");
         puts("Press [enter] at the start of a line to stop.");
-        while(getchar() !='\n');
         while(count < MAXBKS && s_gets(library[count].title, MAXTITL)
               && library[count].title[0] != '\0')
         {
