@@ -45,25 +45,23 @@ void delete(struct colossus [], int n);
 int main(void)
 {
     struct colossus seats[SEAT] = {
-        {1, 0, "",""},
-        {2, 0, "",""},
-        {3, 0, "",""},
-        {4, 0, "",""},
-        {5, 0, "",""},
-        {6, 0, "",""},
-        {7, 0, "",""},
-        {8, 0, "",""},
-        {9, 0, "",""},
-        {10,0, "",""},
-        {11,0, "",""},
-        {12,0, "",""},
+        {1, FREE, "",""},
+        {2, FREE, "",""},
+        {3, FREE, "",""},
+        {4, FREE, "",""},
+        {5, FREE, "",""},
+        {6, FREE, "",""},
+        {7, FREE, "",""},
+        {8, FREE, "",""},
+        {9, FREE, "",""},
+        {10,FREE, "",""},
+        {11,FREE, "",""},
+        {12,FREE, "",""},
     };
-    int count = 0;
     FILE * data;
     char ch;
     int i;
     int n = 0;
-    int free_seats = 0;
     int size = sizeof(struct colossus);
 
     data = fopen(COL_DATA, "rb");
@@ -91,8 +89,7 @@ int main(void)
         if( ch == 'd')
         {
             printf("Enter seat number to booking:\n");
-            scanf("%d", &n);
-            if(n > 0 && n <= SEAT)
+            if(scanf("%d", &n) && n > 0 && n <= SEAT)
                 booking(seats, n);
             else
                 printf("You entered seat number incorrectly.\n");
@@ -100,8 +97,7 @@ int main(void)
         if( ch == 'e')
         {
             printf("Enter seat number to delete:\n");
-            scanf("%d", &n);
-            if(n > 0 && n <= SEAT)
+            if(scanf("%d", &n) && n > 0 && n <= SEAT)
                 delete(seats, n);
             else
                 printf("You entered seat number incorrectly.\n");
@@ -113,7 +109,7 @@ int main(void)
 
     if((data = fopen(COL_DATA, "wb")) == NULL)
     {
-        fprintf(stderr, "Can't open file 'data.tex' to write.\n");
+        fprintf(stderr, "Can't open file COL_DATA to write.\n");
         exit(EXIT_FAILURE);
     }
     fwrite(seats, size * SEAT, 1, data);
@@ -144,7 +140,7 @@ void free_seat(struct colossus seats[], int i)
     int free = 0;
     int j = 0;
     for(j = 0; j < i; j++)
-        if(seats[j].status == 0)
+        if(seats[j].status == FREE)
             free++;
     printf("Number of empty seats is %d.\n", free);
 }
@@ -154,7 +150,7 @@ void list_free_seat(struct colossus seats[], int i)
     int j = 0;
     for(j = 0; j < i; j++)
     {
-        if(seats[j].status == 0)
+        if(seats[j].status == FREE)
             printf("%d is free.\n", seats[j].numb);
     }
 }
@@ -163,6 +159,11 @@ void booking(struct colossus seats[], int i)
 {
     int j = 0;
     char ans;
+    if(seats[i-1].status == BUSY)
+    {
+        printf("It's busy. Choose another seat.\n");
+        return;
+    }
     while(getchar() !='\n');
     printf("Enter your first name:\n");
     s_gets(seats[i - 1].f_name, MAX);
@@ -176,7 +177,7 @@ void booking(struct colossus seats[], int i)
     ans = getchar();
     if(ans == 'Y'|| ans == 'y')
     {
-        seats[i - 1].status = 1;
+        seats[i - 1].status = BUSY;
         printf("%s %s, you have reserved seat number %d\n", seats[i-1].f_name, seats[i-1].l_name, 
                 i);
     }
@@ -218,7 +219,6 @@ void delete(struct colossus seats[], int i)
     }
     if(ans == 'N'|| ans == 'n')
         return;
-    
 }
 
 char * s_gets(char * st, int n)
