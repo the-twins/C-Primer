@@ -181,7 +181,7 @@ void booking(struct colossus seats[], int i)
         printf("%s %s, you have reserved seat number %d\n", seats[i-1].f_name, seats[i-1].l_name, 
                 i);
     }
-    if(ans == 'N'|| ans == 'n')
+    else
     {
         seats[i - 1].f_name[0] = '\0';
         seats[i - 1].l_name[0] = '\0';
@@ -211,14 +211,12 @@ void delete(struct colossus seats[], int i)
         {
             seats[i - 1].f_name[0] = '\0';
             seats[i - 1].l_name[0] = '\0';
-            seats[i - 1].status = 0;
+            seats[i - 1].status = FREE;
             printf("Your reservation has been deleted.\n");
         }
         else
             printf("You entered the data incorrectly.\n");
     }
-    if(ans == 'N'|| ans == 'n')
-        return;
 }
 
 char * s_gets(char * st, int n)
