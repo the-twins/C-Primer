@@ -21,6 +21,7 @@ int main(void)
         show(*fp[index]);
         index = showmenu();
     }
+    printf("Bye.\n");
 
     return 0;
 }
@@ -28,14 +29,18 @@ int main(void)
 int showmenu(void)
 {
     int ans;
+    int er = -1;
     printf("Enter menu choice:\n");
     printf("0)Addition       1)Subtraction\n");
     printf("2)Multiplication  3)Division\n");
     printf("If you want to exit, enter any other number or letter.\n");
-    if(scanf("%d", &ans) && ans >= 0 && ans <= 3)
+    if(scanf("%d", &ans))
+    {
+        while(getchar() !='\n');
         return ans;
+    }
     else
-        printf("Bye.\n");
+        return er;
 }
 
 double Addition(double i, double j)
@@ -64,4 +69,5 @@ void show(double (*fp) (double i, double j))
     printf("Enter two numbers:");
     if(scanf("%lf %lf", &i, &j) == 2)
         printf("%.2lf\n", (*fp)(i, j));
+    while(getchar() !='\n');
 }
