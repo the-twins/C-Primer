@@ -41,7 +41,7 @@ int main(void)
     FILE * data;
     int flight;
     char ch;
-    int i, j, r;
+    int i, j;
     int n = 0;
     int size = sizeof(struct colossus);
 
@@ -66,10 +66,9 @@ int main(void)
     printf("4) EXIT\n");
     while(scanf("%d", &flight) && flight >= 0 && flight <= 3)
     {
-        while(getchar() !='\n');
+        while(getchar() != '\n');
         while ((ch = menu(numb_flight[flight])) !='\n')
         {
-            while(getchar() !='\n');
             if( ch == 'a')
                 free_seat(seats, flight);
             if( ch == 'b')
@@ -88,7 +87,10 @@ int main(void)
             {
                 printf("Enter seat number to booking on the flight %d:\n", numb_flight[flight]);
                 if(scanf("%d", &n) && n > 0 && n <= SEAT)
+                {
+                    while(getchar() !='\n');
                     booking(seats, n, flight);
+                }
                 else
                 {
                     while(getchar() !='\n');
@@ -99,7 +101,10 @@ int main(void)
             {
                 printf("Enter seat number to delete on the flight %d:\n", numb_flight[flight]);
                 if(scanf("%d", &n) && n > 0 && n <= SEAT)
+                {
+                    while(getchar() !='\n');
                     delete(seats, n, flight);
+                }
                 else
                 {
                     while(getchar() !='\n');
@@ -111,7 +116,10 @@ int main(void)
                 printf("Enter seat number to confirm your reservation on the flight %d:\n",
                         numb_flight[flight]);
                 if(scanf("%d", &n) && n > 0 && n <= SEAT)
+                {
+                    while(getchar() !='\n');
                     confirm(seats, n, flight);
+                }
                 else
                 {
                     while(getchar() !='\n');
@@ -128,7 +136,7 @@ int main(void)
     }
     if((data = fopen(COL_DATA, "wb")) == NULL)
     {
-        fprintf(stderr, "Can't open file COL_DATA to write.\n");
+        fprintf(stderr, "Can't open file %s to write.\n", COL_DATA);
         exit(EXIT_FAILURE);
     }
     fwrite(seats, size * SEAT, FLIGHT, data);
@@ -151,6 +159,7 @@ char menu(int n)
     printf("f) Confirm reservation.\n");
     printf("g) Quit.\n");
     i = getchar();
+    while(getchar() != '\n');
 
     return i;
 }
@@ -179,12 +188,11 @@ void booking(struct colossus seats[][SEAT], int i, int n)
 {
     int j = 0;
     char ans;
-    if(seats[n][i-1].status == BUSY)
+    if(seats[n][i-1].status == BUSY || seats[n][i - 1].status == CONFIRMED)
     {
         printf("It's busy. Choose another seat on the flight %d.\n", numb_flight[n]);
         return;
     }
-    while(getchar() !='\n');
     printf("Enter your first name:\n");
     s_gets(seats[n][i - 1].f_name, MAX);
     for(j = 0; j < MAX; j++)
@@ -216,7 +224,6 @@ void delete(struct colossus seats[][SEAT], int i, int n)
     char l_names[MAX];
     int j = 0;
     char ans;
-    while(getchar() !='\n');
     printf("Enter your first name:\n");
     s_gets(f_names, MAX);
     for(j = 0; j < MAX; j++)
@@ -247,8 +254,12 @@ void delete(struct colossus seats[][SEAT], int i, int n)
 void confirm(struct colossus seats[][SEAT], int i, int n)
 {
     char ans;
-    while(getchar() !='\n');
-    printf("%s %s, would you like to confirm your reservation for %d seats on flight %d?\n",
+    if(seats[n][i - 1].status == FREE)
+    {
+        printf("You must reserve this seat.\n");
+        return;
+    }
+    printf("%s %s, would you like to confirm your reservation for %d seat on flight %d?\n",
            seats[n][i - 1].f_name, seats[n][i - 1].l_name, i, numb_flight[n]);
     printf("Enter Y to confirm or N to exit to the menu:\n");
     ans = getchar();
