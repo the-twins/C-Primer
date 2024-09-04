@@ -61,11 +61,10 @@ unsigned int ListItemCount(const List * plist)
 }
 
 // creates node to hold item and adds it to the end of
-// the list pointed to by plist (slow implementation)
+// the list pointed to by plist
 bool AddItem(Item item, List * plist)
 {
     Node * pnew;
-    Node * scan = plist->head;
 
     pnew = (Node *) malloc(sizeof(Node));
     if(pnew == NULL)
@@ -73,13 +72,15 @@ bool AddItem(Item item, List * plist)
 
     CopyToNode(item, pnew);
     pnew->next = NULL;
-    if(scan == NULL)
-        plist->head = pnew;
+    if(plist->head)
+    {
+        plist->end->next = pnew;
+        plist->end = pnew;
+    }
     else
     {
-        while(scan->next != NULL)
-            scan = scan->next;
-        scan->next = pnew;
+        plist->head = pnew;
+        plist->end = pnew;
     }
 
     return true;
