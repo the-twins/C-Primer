@@ -87,8 +87,7 @@ char * s_gets(char * st, int n)
 }
 
 void traverse_back(struct film * pn)
-{
-    
+{ 
     if(pn != NULL)
     {	    
         traverse_back(pn->next);
