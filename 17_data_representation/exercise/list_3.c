@@ -5,7 +5,7 @@
 //         Item entries[MAXSIZE];  // array of item
 //         int item;               // number of items in list
 //     } List;
-// Rewrite the list.c (Listing 17.5) functions to fit this definition an d test the resulting
+// Rewrite the list.c (Listing 17.5) functions to fit this definition and test the resulting
 // code with the film3.c (Listing 17.4) program.
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,7 +43,7 @@ unsigned int ListItemCount(const List * plist)
 }
 
 // creates node to hold item and adds it to the end of
-// the list pointed to by plist (slow implementation)
+// the list pointed to by plist
 bool AddItem(Item item, List * plist)
 {
 
