@@ -5,8 +5,8 @@
 #include <time.h>            // for time()
 #include "../examples/queue.h"// change Item typedef
 
-#define MIN_PER_HR 60.0
-#define MAX 10
+#define MIN_PER_HR  60.0
+#define MAX_WINDOWS 10
 
 bool newcustomer(double x);  // is there a new customer?
 Item customertime(long when);// set customer parameters
@@ -22,11 +22,11 @@ int main(void)
     long customers = 0;      // joined the queue
     long served = 0;         // served durling the simulation
     long sum_line = 0;       // cumulativ line length
-    int wait_time[MAX];      // time until Sigmund 
+    int wait_time[MAX_WINDOWS];// time until Sigmund is free
     double min_per_cust;     // average time between arrivals
     long line_wait = 0;      // cumulative time in line
     int windows;             // number of windows
-    int count;
+    int i;
 
     InitializeQueue(&line);
     srand((unsigned int) time(0)); //random initializing of rand()
@@ -39,7 +39,8 @@ int main(void)
     min_per_cust = MIN_PER_HR / perhour;
     printf("Enter the number of windows:\n");
     scanf("%d", &windows);
-
+    for(i = 0; i < MAX_WINDOWS; i++)
+        wait_time[i] = 0;
     for (cycle = 0; cycle < cyclelimit; cycle++)
     {
         if(newcustomer(min_per_cust))
@@ -53,17 +54,17 @@ int main(void)
                 EnQueue(temp, &line);
             }
         }
-        for(count = 0; count < windows; count++)
+        for(i = 0; i < windows; i++)
         {
-            if(wait_time[count] <= 0 && !QueueIsEmpty(&line))
+            if(wait_time[i] <= 0 && !QueueIsEmpty(&line))
             {
                 DeQueue(&temp, &line);
-                wait_time[count] = temp.processtime;
+                wait_time[i] = temp.processtime;
                 line_wait += cycle - temp.arrive;
                 served++;
             }
-            if(wait_time[count] > 0)
-                wait_time[count]--;
+            if(wait_time[i] > 0)
+                wait_time[i]--;
         }
         sum_line += QueueItemCount(&line);
     }
