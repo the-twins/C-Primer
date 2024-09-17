@@ -25,6 +25,7 @@ WordTree * add_word(WordTree * pt, char * word);
 void print_tree(const WordTree * pt);
 void findwords(const WordTree * pt);
 int compar(const WordTree * pt, char * find_word);
+void clear_tree(WordTree * pt);
 
 int main(int argc, char * argv[])
 {
@@ -32,6 +33,7 @@ int main(int argc, char * argv[])
     FILE * fp;
     char choice;
     WordTree * tree = NULL;
+    WordTree * new_node = NULL;
 
     if(argc != 2)
     {
@@ -46,15 +48,14 @@ int main(int argc, char * argv[])
     while(fscanf(fp, "%s", temp) == 1)
     {
         lowercase(temp);
-        if (tree == NULL)
-            tree = add_word(tree, temp);
-        else
-            add_word(tree, temp);
-        if(!tree)
+        new_node = add_word(tree, temp);
+        if(new_node == NULL)
         {
             fprintf(stderr, "Can't allocate memory.\n");
             exit(EXIT_FAILURE);
         }
+        if(tree == NULL)
+            tree = new_node;
     }
     fclose(fp);
 
@@ -71,6 +72,7 @@ int main(int argc, char * argv[])
             default  :  puts("Switching error");
         }
     }
+    clear_tree(tree);
 
     return 0;
 }
@@ -81,7 +83,7 @@ char menu(void)
 
     puts("Enter the letter corresponding to your choice:");
     puts("s) Show list all the words along with the number of occurrences");
-    puts("f) Enter a word and program reporting how many times the word occurred in the file");
+    puts("f) Enter a word and the program will show how many times it appears in the text");
     puts("q) Quit");
     while((ch = getchar()) != EOF)
     {
@@ -178,3 +180,13 @@ int compar(const WordTree * pt, char * find_word)
        return count;
    return compar(pt->right, find_word);
 } 
+
+void clear_tree(WordTree * pt)
+{
+    if(pt != NULL)
+    {
+        clear_tree(pt->left);
+        clear_tree(pt->right);
+        free(pt);
+    }
+}
