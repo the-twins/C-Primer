@@ -108,34 +108,37 @@ bool DeleteItem(const Item * pi, Tree * ptree)
     strcpy(temp, pi->petkind[0]);
     if(look.child == NULL)
         return false;
-    if(look.child->item.n == 1)
+    if(ptree->size == 1)
     {
         DeleteNode(&ptree->root);
         ptree->size--;
         return true;
     }
+    if(look.child->item.n == 1)
+    {
+        if(ptree->root == look.child)
+        {
+            DeleteNode(&ptree->root);
+            ptree->size--;
+            return true;
+        }
+        if(look.parent->left == look.child)
+        {
+            DeleteNode(&look.parent->left);
+            ptree->size--;
+            return true;
+        }
+        else
+        {
+            DeleteNode(&look.parent->right);
+            ptree->size--;
+            return true;
+        } 
+    }
     item_comp = look.child->item.n;
     look.child->item.n = DeletePetkind(look.child->item.petkind, temp, look.child->item.n);
     if(item_comp != look.child->item.n && look.child->item.n != 0)
         ptree->size--;
-    if(look.child->item.n < 1)
-    {
-        if(look.parent == NULL)
-        {
-            DeleteNode(&ptree->root);
-            ptree->size--;
-        }
-        else if(look.parent->left == NULL)
-        {
-            DeleteNode(&look.parent->left);
-            ptree->size--;
-        }
-        else if(look.parent->right == NULL)
-        {
-            DeleteNode(&look.parent->right);
-            ptree->size--;
-        }
-    }
     return true;
 }
 

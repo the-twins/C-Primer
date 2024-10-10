@@ -92,6 +92,12 @@ void Traverse(const Tree * ptree, void (*pfun)(Item item));
 // postconditions: tree is empty
 void DeleteAll(Tree * ptree);
 
+// operation:      look for a pet in a tree
+// preconditions:  ptree points to a tree
+//                 pi is an address of item to be found
+// postconditions: the function searches for matches in
+//                 the tree, if the petname is found, then
+//                 display all petkinds with this name
 void FindWord(const Tree * ptree, const Item * pi);
 
 #endif
